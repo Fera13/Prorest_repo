@@ -1,5 +1,8 @@
 # To create notifications
-pyler 
+pyler
+
+# To create the interface
+PyQt5
 
 # To test code quality
 bandit

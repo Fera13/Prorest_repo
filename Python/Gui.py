@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Prorest.ui'
+# Form implementation generated from reading ui file 'Prorest2.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -9,10 +9,18 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
+import time
+import sys
+from plyer import notification
+import os
 
+class Ui_MainWindow(QDialog):
+    breakChoice = 1
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def __init__(self):
+        super().__init__()
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(806, 603)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -29,7 +37,7 @@ class Ui_MainWindow(object):
         self.break_bg.setText("")
         self.break_bg.setPixmap(QtGui.QPixmap("../Python/BG/ThinkstockPhotos-489763838-e1490767826261.jpg"))
         self.break_bg.setObjectName("break_bg")
-        self.break_btn = QtWidgets.QPushButton(self.tab)
+        self.break_btn = QtWidgets.QPushButton(self.tab, clicked = lambda: self.break_press())
         self.break_btn.setGeometry(QtCore.QRect(290, 290, 191, 61))
         self.break_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
@@ -37,6 +45,11 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
+        self.music_bg = QtWidgets.QLabel(self.tab_2)
+        self.music_bg.setGeometry(QtCore.QRect(-270, -40, 1051, 581))
+        self.music_bg.setText("")
+        self.music_bg.setPixmap(QtGui.QPixmap("../Python/BG/maxresdefault2.jpg"))
+        self.music_bg.setObjectName("music_bg")
         self.tabWidget.addTab(self.tab_2, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -48,7 +61,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -59,12 +72,40 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Break reminder"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Relaxing songs"))
 
+    def break_press(self):
+        if self.breakChoice == 1:
+            self.break_btn.setText("Turn off")
+            self.breakChoice = 2
+            self.worker = WorkerThread()
+            self.worker.start()
+        else:
+            self.break_btn.setText("Turn on")
+            self.breakChoice = 1
+            os.system("taskkill /im python.exe /f")
+            
+            
+    def restart(self):
+        pass
+            
+
+    def get_breakChoice(self):
+        return self.breakChoice
+    
+class WorkerThread(QThread):
+    def run(self):
+        for x in range(48):
+            notification.notify(title = "It's time for a small break!",
+                                message = "Why don't you stretch a bit, move your body and rest your eyes :)",
+                                app_name = "Prorest",
+                                app_icon = "Meh.ico",
+                                timeout = 60)
+            time.sleep(1800)
+
+
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
