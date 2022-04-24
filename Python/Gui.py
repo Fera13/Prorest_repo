@@ -14,7 +14,7 @@ from PyQt5.QtCore import *
 import time
 import sys
 from plyer import notification
-import os
+
 
 class Ui_MainWindow(QDialog):
     breakChoice = 1
@@ -76,30 +76,25 @@ class Ui_MainWindow(QDialog):
         if self.breakChoice == 1:
             self.break_btn.setText("Turn off")
             self.breakChoice = 2
+            WorkerThread.running = True
             self.worker = WorkerThread()
             self.worker.start()
         else:
+            WorkerThread.running = False
             self.break_btn.setText("Turn on")
             self.breakChoice = 1
-            os.system("taskkill /im python.exe /f")
-            
-            
-    def restart(self):
-        pass
-            
 
-    def get_breakChoice(self):
-        return self.breakChoice
-    
+
 class WorkerThread(QThread):
+    running = True
     def run(self):
-        for x in range(48):
+        while self.running:
             notification.notify(title = "It's time for a small break!",
                                 message = "Why don't you stretch a bit, move your body and rest your eyes :)",
                                 app_name = "Prorest",
                                 app_icon = "Meh.ico",
-                                timeout = 60)
-            time.sleep(1800)
+                                timeout = 10)
+            time.sleep(20)
 
 
 
