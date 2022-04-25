@@ -3,6 +3,15 @@ pyler
 
 # To create the interface
 PyQt5
+ 
+# To connect to mysql
+mysqlclient
+mysql-connector-python
+
+# To play music
+pafy
+python-vlc
+youtube-dl==2020.12.2
 
 # To test code quality
 bandit

@@ -14,10 +14,14 @@ from PyQt5.QtCore import *
 import time
 import sys
 from plyer import notification
+from Database import *
+import pafy
+import vlc
 
 
 class Ui_MainWindow(QDialog):
     breakChoice = 1
+    musicChoice = 1
 
     def __init__(self):
         super().__init__()
@@ -50,6 +54,11 @@ class Ui_MainWindow(QDialog):
         self.music_bg.setText("")
         self.music_bg.setPixmap(QtGui.QPixmap("../Python/BG/maxresdefault2.jpg"))
         self.music_bg.setObjectName("music_bg")
+        self.music_btn = QtWidgets.QPushButton(self.tab_2, clicked = lambda: self.play_music_press())
+        self.music_btn.setGeometry(QtCore.QRect(530, 80, 191, 61))
+        self.music_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(219, 200, 45, 252), stop:1 rgba(209, 255, 137, 252));\n"
+"font: 75 14pt \"Berlin Sans FB Demi\";")
+        self.music_btn.setObjectName("music_btn")
         self.tabWidget.addTab(self.tab_2, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -70,6 +79,8 @@ class Ui_MainWindow(QDialog):
         self.break_btn.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.break_btn.setText(_translate("MainWindow", "Turn on"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Break reminder"))
+        self.music_btn.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
+        self.music_btn.setText(_translate("MainWindow", "Turn on"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Relaxing songs"))
 
     def break_press(self):
@@ -77,25 +88,59 @@ class Ui_MainWindow(QDialog):
             self.break_btn.setText("Turn off")
             self.breakChoice = 2
             WorkerThread.running = True
-            self.worker = WorkerThread()
+            self.worker = WorkerThread(1)
             self.worker.start()
         else:
             WorkerThread.running = False
             self.break_btn.setText("Turn on")
             self.breakChoice = 1
 
+    def play_music_press(self):
+        if self.musicChoice == 1:
+            self.music_btn.setText("Turn off")
+            self.musicChoice = 2
+            WorkerThread.music = True
+            self.worker = WorkerThread(2)
+            self.worker.start()
+        else:
+            WorkerThread.music = False
+            self.music_btn.setText("Turn on")
+            self.musicChoice = 1
 
 class WorkerThread(QThread):
     running = True
-    def run(self):
-        while self.running:
-            notification.notify(title = "It's time for a small break!",
-                                message = "Why don't you stretch a bit, move your body and rest your eyes :)",
-                                app_name = "Prorest",
-                                app_icon = "Meh.ico",
-                                timeout = 10)
-            time.sleep(20)
+    music = True
+    def __init__(self, workerNum):
+        super().__init__()
+        self.workerNum = workerNum
 
+    def run(self):
+        if self.workerNum == 1:
+            while self.running:
+                notification.notify(title = "It's time for a small break!",
+                                    message = "Why don't you stretch a bit, move your body and rest your eyes :)",
+                                    app_name = "Prorest",
+                                    app_icon = "Meh.ico",
+                                    timeout = 60)
+                time.sleep(1800)
+        
+        elif self.workerNum == 2:
+            d = Database()
+            songs = d.play_songs_order()
+            for song in songs:
+                while self.music:
+                    video = pafy.new(song)
+                    best = video.getbestaudio()
+                    playurl = best.url
+                    instance = vlc.Instance()
+                    player = instance.media_player_new()
+                    media = instance.media_new(playurl)
+                    media.get_mrl()
+                    player.set_media(media)
+                    player.play()
+                    time.sleep(210)
+                    player.stop()
+                    break
 
 
 if __name__ == "__main__":

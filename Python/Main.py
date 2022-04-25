@@ -1,10 +1,8 @@
-from Breaks import work_break
 import time
-
+from Database import *
 
 def main():
     pass
-
 
 if __name__ == "__main__":
     main()
