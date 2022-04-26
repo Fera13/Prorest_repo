@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>806</width>
-    <height>603</height>
+    <width>818</width>
+    <height>598</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>20</x>
       <y>10</y>
       <width>781</width>
       <height>541</height>
@@ -206,7 +206,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>806</width>
+     <width>818</width>
      <height>26</height>
     </rect>
    </property>
