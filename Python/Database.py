@@ -11,6 +11,7 @@ class Database:
         pass
 
     def play_songs_order(self):
+        """Get a list of song links from the database and return it"""
         songs = []
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)

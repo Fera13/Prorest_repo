@@ -3,7 +3,8 @@ import pafy
 import vlc
 from plyer import notification
 
-def isTimeFormat(input):
+def checkTimeFormat(input):
+    """Checks if the time entered is the right format with the right values. Returns boolean"""
     try:
         if len(input) == 5:
             time.strptime(input, '%H:%M')
@@ -14,6 +15,7 @@ def isTimeFormat(input):
         return False
 
 def play_music(link):
+    """Takes a youtube link and plays it as sound in vlc player"""
     video = pafy.new(link)
     length = video.length
     best = video.getbestaudio()
@@ -28,6 +30,7 @@ def play_music(link):
     player.stop()
     
 def viewNotification(starter, msg, ico, displayTime, sleepTime):
+    """Creates notifications. Takes title sentence, message, time that it will be displayed in and time until the next notification"""
     notification.notify(title = starter,
                         message = msg,
                         app_name = "Prorest",

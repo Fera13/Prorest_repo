@@ -27,6 +27,7 @@ class Ui_Prorest(QDialog):
     music_timer_play = 1
     
     def setupUi(self, Prorest):
+        """The skeleton of the program"""
         Prorest.setObjectName("Prorest")
         Prorest.resize(818, 598)
         Prorest.setStyleSheet("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(151, 45, 219, 252), stop:1 rgba(72, 151, 183, 252));\n"
@@ -113,6 +114,7 @@ class Ui_Prorest(QDialog):
         QtCore.QMetaObject.connectSlotsByName(Prorest)
 
     def retranslateUi(self, Prorest):
+        """Texts on the buttons and labels"""
         _translate = QtCore.QCoreApplication.translate
         Prorest.setWindowTitle(_translate("Prorest", "Prorest"))
         self.break_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
@@ -130,6 +132,7 @@ class Ui_Prorest(QDialog):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Prorest", "Relaxing songs"))
     
     def break_press(self):
+        """Check if the requirments are met and start or stop the break notifications"""
         if self.breakChoice == 1:
             self.break_btn.setText("Turn off")
             self.breakChoice = 2
@@ -142,6 +145,7 @@ class Ui_Prorest(QDialog):
             self.breakChoice = 1
 
     def play_music_press(self):
+        """Check if the requirments are met and start or stop playing music in order"""
         if self.musicOrder == 1:
             self.music_btn.setText("Turn off")
             self.musicOrder = 2
@@ -154,6 +158,7 @@ class Ui_Prorest(QDialog):
             self.musicOrder = 1
 
     def play_random_music(self):
+        """Check if the requirments are met and start or stop playing music in a random order"""
         if self.musicRandom == 1:
             self.Random_music_btn.setText("Randomize off")
             self.musicRandom = 2
@@ -166,7 +171,8 @@ class Ui_Prorest(QDialog):
             self.musicRandom = 1
             
     def set_music_time_press(self, timeSelected):
-        timeCheck = RunningOp.isTimeFormat(timeSelected)
+        """Take the time selected. Check if the requirments are met and start or stop checking current time to play music automatically"""
+        timeCheck = RunningOp.checkTimeFormat(timeSelected)
         if timeCheck:
             if self.musicTimer == 1:
                 self.Automated_music_btn.setText("Delete set time")
@@ -190,6 +196,7 @@ class Ui_Prorest(QDialog):
             self.write_time_bar.setText("")
     
     def timer_song_play(self):
+        """Start the music automatically when the time selected matches the current time"""
         WorkerThread.songTimer = True
         self.music_timer_play = 2
         self.worker = WorkerThread(5)
@@ -210,6 +217,7 @@ class WorkerThread(QThread):
         self.workerNum = workerNum
 
     def run(self):
+        """Starts running different workers depending on the conditions and can be activated together or separatly"""
         if self.workerNum == 1:
             while self.running:
                 RunningOp.viewNotification("It's time for a small break!", "Why don't you stretch a bit, move your body and rest your eyes :)", "Icons/Meh.ico", 50, 1800)
