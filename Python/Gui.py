@@ -175,7 +175,7 @@ class Ui_Prorest(QDialog):
         timeCheck = RunningOp.checkTimeFormat(timeSelected)
         if timeCheck:
             if self.musicTimer == 1:
-                self.Automated_music_btn.setText("Delete set time")
+                self.Automated_music_btn.setText("Stop timer/ music")
                 self.time_format_label.setText("           Time has been set")
                 self.musicTimer = 2
                 WorkerThread.sTimer = True
