@@ -25,19 +25,37 @@ CREATE TABLE snacks (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     snack_name VARCHAR(160),
     benefits VARCHAR(400),
-    sources VARCHAR(200),
-    link VARCHAR(200)
+    source_id INT NOT NULL,
+    FOREIGN KEY (source_id) REFERENCES refs(id)
     
 );
 
-INSERT INTO snacks(snack_name, benefits, sources, link) VALUES
-("Bananas", "They’re full of complex carbohydrates, vitamin B6, potassium and even a little protein.", "INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
-("Dates", "Dates contain vitamins and minerals like iron, manganese, copper, potassium and magnesium, in addition to fiber and antioxidants.", "INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
-("Avocados", "They’re a superfood! Avocados are rich in ‘good’ fats, fiber and B vitamins. Around 85% of the fat in avocados is from monounsaturated and polyunsaturated fatty acids, which promote healthy blood-fat levels and boost the absorption of nutrients.", "INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
-("Cashews", "low in sugar and rich in fiber, heart-healthy fats, and plant protein. They're a solid source of copper, magnesium and manganese which are key ingredients for energy production, healthy bones brain health and immunity.", "INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy","https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy" ),
-("Leafy vegetables", "Kale, spinach, collards, and broccoli for examples are rich in brain-healthy nutrients like vitamin K, lutein, folate, and beta carotene. Research suggests these plant-based foods may help slow cognitive decline.", "Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower"),
-("Berries", "improves memory and delays memory decline", "Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower"),
-("Walnuts", "Walnuts are high in a type of omega-3 fatty acid called alpha-linolenic acid (ALA). Diets rich in ALA and other omega-3 fatty acids have been linked to lower blood pressure and cleaner arteries.", "Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower");
+CREATE TABLE refs (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sources VARCHAR(200),
+    link VARCHAR(200)
+);
+
+CREATE TABLE important_dates (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    the_date DATE,
+    the_time VARCHAR(5),
+    title VARCHAR(100),
+    msg VARCHAR(200)
+);
+
+INSERT INTO snacks(snack_name, benefits, id) VALUES
+("Bananas", "They’re full of complex carbohydrates, vitamin B6, potassium and even a little protein.", 1),
+("Dates", "Dates contain vitamins and minerals like iron, manganese, copper, potassium and magnesium, in addition to fiber and antioxidants.", 1),
+("Avocados", "They’re a superfood! Avocados are rich in ‘good’ fats, fiber and B vitamins. Around 85% of the fat in avocados is from monounsaturated and polyunsaturated fatty acids, which promote healthy blood-fat levels and boost the absorption of nutrients.", 1),
+("Cashews", "low in sugar and rich in fiber, heart-healthy fats, and plant protein. They're a solid source of copper, magnesium and manganese which are key ingredients for energy production, healthy bones brain health and immunity.", 1),
+("Leafy vegetables", "such as kale, spinach, collards, and broccoli are rich in brain-healthy nutrients like vitamin K, lutein, folate, and beta carotene. Research suggests these plant-based foods may help slow cognitive decline.", 2),
+("Berries", "improves memory and delays memory decline", 2),
+("Walnuts", "Walnuts are high in a type of omega-3 fatty acid called alpha-linolenic acid (ALA). Diets rich in ALA and other omega-3 fatty acids have been linked to lower blood pressure and cleaner arteries.", 2);
+
+INSERT INTO refs(sources, link) VALUES
+("INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
+("Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower");
 
 INSERT INTO songs(song_name, artist, yt_link, channel_name, credit) VALUES
 (	"Purpose", "Jonny Easton", "https://www.youtube.com/watch?v=eZEczfSAjVQ", "BreakingCopyright — Royalty Free Music", 
