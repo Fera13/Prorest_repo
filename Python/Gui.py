@@ -255,6 +255,10 @@ class WorkerThread(QThread):
                     randsong = random.randint(0, len(songs)-1)
                     RunningOp.play_music(songs[randsong])
                     songs.pop(randsong)
+        
+        elif self.workerNum == 6:
+            while self.running:
+                RunningOp.viewNotification("It's time for some snacks and refreshments!", "Why don't you grab yourself a snack and some water? Give yourself some much needed energy :)", "Icons/1.ico", 60, 7200)
 
 
 
