@@ -25,6 +25,7 @@ class Ui_Prorest(QDialog):
     musicRandom = 1
     musicTimer = 1
     music_timer_play = 1
+    snackChoice = 1
     
     def setupUi(self, Prorest):
         """The skeleton of the program"""
@@ -201,6 +202,19 @@ class Ui_Prorest(QDialog):
         self.music_timer_play = 2
         self.worker = WorkerThread(5)
         self.worker.start()
+    
+    def snack_press(self):
+        """Check if the requirments are met and start or stop the snack notifications"""
+        if self.snackChoice == 1:
+            self.snacks_btn.setText("Turn off")
+            self.snacksChoice = 2
+            WorkerThread.running = True
+            self.worker = WorkerThread(6)
+            self.worker.start()
+        else:
+            WorkerThread.running = False
+            self.snacks_btn.setText("Turn on")
+            self.snackChoice = 1
         
 
 class WorkerThread(QThread):

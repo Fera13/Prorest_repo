@@ -24,3 +24,18 @@ class Database:
         myCursor.close()
         myCon.close()
         return songs
+    
+    def snack_recommendations(self):
+        """Get a list of snacks from the database and return it"""
+        snacks = []
+        myCon = myCon = mysql.connector.connect(**self.conInfo)
+        myCursor = myCon.cursor(prepared=True)
+        sql = "SELECT s.snack_name FROM snacks s;"
+        myCursor.execute(sql)
+        rows = myCursor.fetchall()
+        for snackNames in rows:
+            for snackName in snackNames:
+                snacks.append(snackName)
+        myCursor.close()
+        myCon.close()
+        return snacks
