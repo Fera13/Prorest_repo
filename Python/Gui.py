@@ -115,7 +115,7 @@ class Ui_Prorest(QDialog):
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.snacks_btn.setObjectName("snacks_btn")
         self.snacks_tips = QtWidgets.QLabel(self.tab_3)
-        self.snacks_tips.setGeometry(QtCore.QRect(10, 170, 191, 331))
+        self.snacks_tips.setGeometry(QtCore.QRect(10, 210, 191, 211))
         self.snacks_tips.setStyleSheet("font: 75 12pt \"Berlin Sans FB Demi\";")
         self.snacks_tips.setObjectName("snacks_tips")
         self.tabWidget.addTab(self.tab_3, "")
@@ -134,9 +134,10 @@ class Ui_Prorest(QDialog):
         self.label_3.setText("")
         self.label_3.setPixmap(QtGui.QPixmap("../Python/BG/books-library_6XANS2384I.jpg"))
         self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(self.tab_5)
-        self.label_4.setGeometry(QtCore.QRect(480, 50, 251, 421))
-        self.label_4.setObjectName("label_4")
+        self.resourse_label = QtWidgets.QLabel(self.tab_5)
+        self.resourse_label.setGeometry(QtCore.QRect(480, 120, 251, 281))
+        self.resourse_label.setStyleSheet("font: 75 10pt \"Berlin Sans FB Demi\";")
+        self.resourse_label.setObjectName("resourse_label")
         self.tabWidget.addTab(self.tab_5, "")
         Prorest.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Prorest)
@@ -170,10 +171,11 @@ class Ui_Prorest(QDialog):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Prorest", "Relaxing songs"))
         self.snacks_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.snacks_btn.setText(_translate("Prorest", "Turn on"))
-        self.snacks_tips.setText(_translate("Prorest", ""))
+        self.snacks_tips.setText(_translate("Prorest", "Some tips for snacks!\n\nBananas\nDates\nAvocados\nCashews\nLeafy Vegetables\nBerries\nWalnuts"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Prorest", "Snacks and Drink reminder"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Prorest", "Important Dates"))
-        self.label_4.setText(_translate("Prorest", "TextLabel"))
+        self.resourse_label.setText(_translate("Prorest", "INTEGRIS Health\nFoods that give you energy\n2021, October 23\nhttps://integrisok.com/resources/on-your\n-health/2021/september/healthy-foods\n-that-give-you-energy\n\n\
+            \n\nHarvard Health\nFoods linked to better brainpower\n2021, March 6\nhttps://www.health.harvard.edu/\nhealthbeat/foods-linked-to\n-better-brainpower"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("Prorest", "Resources"))
 
 
@@ -248,11 +250,9 @@ class Ui_Prorest(QDialog):
         self.worker = WorkerThread(5)
         self.worker.start()
     
-    def snack_recommend(self):
-        """Create a list and seperate it with a new line"""
-        d = Database()
-        snackList = d.snack_recommendations()
-        self.snacks_tips.setText("Hey")
+    def snack_recommend(self, text):
+        """Applies the text to the label"""
+        self.snacks_tips.setText(text)
         
     
     def snack_press(self):
@@ -326,6 +326,11 @@ class WorkerThread(QThread):
                     songs.pop(randsong)
         
         elif self.workerNum == 6:
+            #d = Database()
+            #u = Ui_Prorest()
+            #snackList = d.snack_recommendations()
+            #snackOutput = print(*snackList, sep= "\n")
+            #u.snack_recommend(snackOutput)
             while self.snack:
                 RunningOp.viewNotification("It's time for some snacks and refreshments!", "Why don't you grab yourself a snack and some water? Give yourself some much needed energy :)", "Icons/1.ico", 60, 7200)
 
