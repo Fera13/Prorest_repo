@@ -28,7 +28,7 @@ class Database:
     def snack_recommendations(self):
         """Get a list of snacks from the database and return it"""
         snacks = []
-        myCon = myCon = mysql.connector.connect(**self.conInfo)
+        myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
         sql = "SELECT s.snack_name FROM snacks s;"
         myCursor.execute(sql)
