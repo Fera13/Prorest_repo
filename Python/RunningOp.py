@@ -37,3 +37,6 @@ def viewNotification(starter, msg, ico, displayTime, sleepTime):
                         app_icon = ico,
                         timeout = displayTime)
     time.sleep(sleepTime)
+
+def viewDateNotification():
+    print("")

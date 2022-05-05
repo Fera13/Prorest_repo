@@ -26,8 +26,8 @@ class Database:
         return songs
     
     def snack_recommendations(self):
-        """Get a list of snacks from the database and return it"""
-        snacks = []
+        """Get a string of snacks from the database and return it"""
+        snacks = "Here are some tips!\n\n"
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
         sql = "SELECT s.snack_name FROM snacks s;"
@@ -35,7 +35,34 @@ class Database:
         rows = myCursor.fetchall()
         for snackNames in rows:
             for snackName in snackNames:
-                snacks.append(snackName)
+                snacks += snackName + "\n"
         myCursor.close()
         myCon.close()
         return snacks
+    
+    def write_important(self, date, time, title, message):
+        """Writing important dates to the database"""
+        myCon = mysql.connector.connect(**self.conInfo)
+        myCursor = myCon.cursor(prepared=True)
+        sql = f"INSERT INTO important_dates (id, the_date, the_time, title, msg) VALUES (1, {date}, {time}, {title}, {message});"
+        myCursor.execute(sql)
+        myCursor.close()
+        myCon.close()
+    
+    
+    def read_important(self, date):
+        """Reading from important dates in the database based on the date"""
+        importantInfo = []
+        myCon = mysql.connector.connect(**self.conInfo)
+        myCursor = myCon.cursor(prepared=True)
+        sql1 = f"SELECT the_date, the_time, title, msg FROM important_dates WHERE the_date = {date};"
+        myCursor.execute(sql1)
+        rows = myCursor.fetchall()
+        for the_dates, in rows:
+            for the_date in the_dates:
+                importantInfo.append(the_date)
+        sql2 = f"DELETE FROM important_dates WHERE the_date = {date};"
+        myCursor.execute(sql2)
+        myCursor.close()
+        myCon.close()
+        return importantInfo

@@ -19,6 +19,8 @@ import sys
 from Database import *
 import random
 
+d = Database()
+
 
 class Ui_Prorest(QDialog):
     breakChoice = 1
@@ -126,6 +128,51 @@ class Ui_Prorest(QDialog):
         self.important_bg.setText("")
         self.important_bg.setPixmap(QtGui.QPixmap("../Python/BG/woman-writing_FFSUL8TZD3.jpg"))
         self.important_bg.setObjectName("important_bg")
+        self.date_label = QtWidgets.QLabel(self.tab_4)
+        self.date_label.setGeometry(QtCore.QRect(30, 80, 181, 21))
+        self.date_label.setStyleSheet("font: 75 8pt \"Berlin Sans FB Demi\";")
+        self.date_label.setObjectName("date_label")
+        self.information_label = QtWidgets.QLabel(self.tab_4)
+        self.information_label.setGeometry(QtCore.QRect(30, 20, 321, 21))
+        self.information_label.setStyleSheet("font: 75 8pt \"Berlin Sans FB Demi\";")
+        self.information_label.setObjectName("information_label")
+        self.time_label = QtWidgets.QLabel(self.tab_4)
+        self.time_label.setGeometry(QtCore.QRect(30, 170, 181, 21))
+        self.time_label.setStyleSheet("font: 75 8pt \"Berlin Sans FB Demi\";")
+        self.time_label.setObjectName("time_label")
+        self.title_label = QtWidgets.QLabel(self.tab_4)
+        self.title_label.setGeometry(QtCore.QRect(30, 260, 181, 21))
+        self.title_label.setStyleSheet("font: 75 8pt \"Berlin Sans FB Demi\";")
+        self.title_label.setObjectName("title_label")
+        self.msg_label = QtWidgets.QLabel(self.tab_4)
+        self.msg_label.setGeometry(QtCore.QRect(30, 350, 181, 21))
+        self.msg_label.setStyleSheet("font: 75 8pt \"Berlin Sans FB Demi\";")
+        self.msg_label.setObjectName("msg_label")
+        self.write_date = QtWidgets.QLineEdit(self.tab_4)
+        self.write_date.setGeometry(QtCore.QRect(30, 120, 181, 31))
+        self.write_date.setText("")
+        self.write_date.setObjectName("write_date")
+        self.write_time = QtWidgets.QLineEdit(self.tab_4)
+        self.write_time.setGeometry(QtCore.QRect(30, 210, 181, 31))
+        self.write_time.setText("")
+        self.write_time.setObjectName("write_time")
+        self.write_title = QtWidgets.QLineEdit(self.tab_4)
+        self.write_title.setGeometry(QtCore.QRect(30, 300, 181, 31))
+        self.write_title.setText("")
+        self.write_title.setObjectName("write_title")
+        self.write_message = QtWidgets.QLineEdit(self.tab_4)
+        self.write_message.setGeometry(QtCore.QRect(30, 390, 181, 31))
+        self.write_message.setText("")
+        self.write_message.setObjectName("write_message")
+        self.set_date_btn = QtWidgets.QPushButton(self.tab_4)
+        self.set_date_btn.setGeometry(QtCore.QRect(30, 430, 181, 61))
+        self.set_date_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));\n"
+"font: 75 14pt \"Berlin Sans FB Demi\";")
+        self.set_date_btn.setObjectName("set_date_btn")
+        self.information_label_2 = QtWidgets.QLabel(self.tab_4)
+        self.information_label_2.setGeometry(QtCore.QRect(30, 40, 321, 21))
+        self.information_label_2.setStyleSheet("font: 75 8pt \"Berlin Sans FB Demi\";")
+        self.information_label_2.setObjectName("information_label_2")
         self.tabWidget.addTab(self.tab_4, "")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
@@ -171,8 +218,16 @@ class Ui_Prorest(QDialog):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Prorest", "Relaxing songs"))
         self.snacks_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.snacks_btn.setText(_translate("Prorest", "Turn on"))
-        self.snacks_tips.setText(_translate("Prorest", "Some tips for snacks!\n\nBananas\nDates\nAvocados\nCashews\nLeafy Vegetables\nBerries\nWalnuts"))
+        self.snacks_tips.setText(_translate("Prorest", d.snack_recommendations()))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Prorest", "Snacks and Drink reminder"))
+        self.date_label.setText(_translate("Prorest", "      Date (Format: YYYY-MM-DD)"))
+        self.information_label.setText(_translate("Prorest", "Add the information with the correct format in the boxes below"))
+        self.time_label.setText(_translate("Prorest", "          Time (Format: HH:MM)"))
+        self.title_label.setText(_translate("Prorest", "                         Title"))
+        self.msg_label.setText(_translate("Prorest", "                      Message"))
+        self.set_date_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
+        self.set_date_btn.setText(_translate("Prorest", "Set Date Reminder"))
+        self.information_label_2.setText(_translate("Prorest", "         When you are done, click on the button in the bottom."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Prorest", "Important Dates"))
         self.resourse_label.setText(_translate("Prorest", "INTEGRIS Health\nFoods that give you energy\n2021, October 23\nhttps://integrisok.com/resources/on-your\n-health/2021/september/healthy-foods\n-that-give-you-energy\n\n\
             \n\nHarvard Health\nFoods linked to better brainpower\n2021, March 6\nhttps://www.health.harvard.edu/\nhealthbeat/foods-linked-to\n-better-brainpower"))
@@ -259,7 +314,7 @@ class Ui_Prorest(QDialog):
         """Check if the requirments are met and start or stop the snack notifications"""
         if self.snackChoice == 1:
             self.snacks_btn.setText("Turn off")
-            self.snacksChoice = 2
+            self.snackChoice = 2
             WorkerThread.snack = True
             self.worker = WorkerThread(6)
             self.worker.start()
@@ -326,11 +381,6 @@ class WorkerThread(QThread):
                     songs.pop(randsong)
         
         elif self.workerNum == 6:
-            #d = Database()
-            #u = Ui_Prorest()
-            #snackList = d.snack_recommendations()
-            #snackOutput = print(*snackList, sep= "\n")
-            #u.snack_recommend(snackOutput)
             while self.snack:
                 RunningOp.viewNotification("It's time for some snacks and refreshments!", "Why don't you grab yourself a snack and some water? Give yourself some much needed energy :)", "Icons/1.ico", 60, 7200)
 
