@@ -27,7 +27,7 @@ class Database:
     
     def snack_recommendations(self):
         """Get a string of snacks from the database and return it"""
-        snacks = "Here are some tips!\n\n"
+        snacks = "      Here are some tips!\n\n"
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
         sql = "SELECT s.snack_name FROM snacks s;"
@@ -35,7 +35,7 @@ class Database:
         rows = myCursor.fetchall()
         for snackNames in rows:
             for snackName in snackNames:
-                snacks += snackName + "\n"
+                snacks += "  -    " + snackName + "\n"
         myCursor.close()
         myCon.close()
         return snacks

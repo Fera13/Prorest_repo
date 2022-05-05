@@ -1,3 +1,4 @@
+from socket import timeout
 import time
 import pafy
 import vlc
@@ -38,5 +39,12 @@ def viewNotification(starter, msg, ico, displayTime, sleepTime):
                         timeout = displayTime)
     time.sleep(sleepTime)
 
-def viewDateNotification():
-    print("")
+def viewDateNotification(starter, date, clock, msg, ico, displayTime):
+    """Creates a notification for important dates. Takes title, date, time, message, icon and the duration of the notification as parameters."""
+    date += ", "
+    date += clock + "\n"
+    date += msg
+    notification.notify(title = starter,
+                        message = date,
+                        app_icon = ico,
+                        timeout = displayTime)

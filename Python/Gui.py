@@ -164,7 +164,7 @@ class Ui_Prorest(QDialog):
         self.write_message.setGeometry(QtCore.QRect(30, 390, 181, 31))
         self.write_message.setText("")
         self.write_message.setObjectName("write_message")
-        self.set_date_btn = QtWidgets.QPushButton(self.tab_4)
+        self.set_date_btn = QtWidgets.QPushButton(self.tab_4, clicked = lambda: self.set_music_time_press(self.write_date.text()))
         self.set_date_btn.setGeometry(QtCore.QRect(30, 430, 181, 61))
         self.set_date_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
@@ -297,6 +297,8 @@ class Ui_Prorest(QDialog):
         else:
             self.time_format_label.setText("Please use the right format (HH:MM)")
             self.write_time_bar.setText("")
+            
+    
     
     def timer_song_play(self):
         """Start the music automatically when the time selected matches the current time"""
