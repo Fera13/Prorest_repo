@@ -46,5 +46,6 @@ def viewDateNotification(starter, date, clock, msg, ico, displayTime):
     date += msg
     notification.notify(title = starter,
                         message = date,
+                        app_name = "Prorest",
                         app_icon = ico,
                         timeout = displayTime)
