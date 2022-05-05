@@ -31,7 +31,7 @@ class Database:
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
         sql = "SELECT s.snack_name FROM snacks s;"
-        myCursor.execute(sql)
+        myCursor.execute(sql, )
         rows = myCursor.fetchall()
         for snackNames in rows:
             for snackName in snackNames:
