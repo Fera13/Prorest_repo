@@ -90,12 +90,12 @@ INSERT INTO songs(song_name, artist, yt_link, channel_name, credit) VALUES
 INSERT INTO def_qoutes(id, qoute) VALUES
 (1, "Nothing is impossible!"),
 (2, "When you have a dream, you’ve got to grab it and never let go."),
-(3, "A positive mindset brings positive things!")
-(4, "You will always pass failure on your way to success.")
-(5, "It always seems impossible until it is done.")
-(6, "Once you replace negative thoughts with positive ones, you’ll start having positive results.")
-(7, "The only time you fail is when you fall down and stay down.")
-(8, "If opportunity doesn’t knock, build a door.")
+(3, "A positive mindset brings positive things!"),
+(4, "You will always pass failure on your way to success."),
+(5, "It always seems impossible until it is done."),
+(6, "Once you replace negative thoughts with positive ones, you’ll start having positive results."),
+(7, "The only time you fail is when you fall down and stay down."),
+(8, "If opportunity doesn’t knock, build a door."),
 (9, "Happiness is an attitude. We either make ourselves miserable, or happy and strong. The amount of work is
-the same.")
+the same."),
 (10, "It’s not whether you get knocked down, it’s whether you get up.");
