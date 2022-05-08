@@ -36,11 +36,12 @@ CREATE TABLE snacks (
 );
 
 CREATE TABLE important_dates (
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id INT NOT NULL AUTO_INCREMENT,
     the_date DATE,
     the_time VARCHAR(5),
     title VARCHAR(100),
-    msg VARCHAR(200)
+    msg VARCHAR(200),
+    PRIMARY KEY (id)
 );
 
 INSERT INTO refs(sources, link) VALUES

@@ -1,3 +1,4 @@
+
 import mysql.connector
 
 
@@ -44,8 +45,10 @@ class Database:
         """Writing important dates to the database"""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
-        sql = f"INSERT INTO important_dates (id, the_date, the_time, title, msg) VALUES (1, {date}, {time}, {title}, {message});"
-        myCursor.execute(sql)
+        sql = "INSERT INTO important_dates (the_date, the_time, title, msg) VALUES ( %s, %s, %s, %s);"
+        args = (date, time, title, message)
+        myCursor.execute(sql, args)
+        myCon.commit()
         myCursor.close()
         myCon.close()
     
@@ -55,14 +58,18 @@ class Database:
         importantInfo = []
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
-        sql1 = f"SELECT the_date, the_time, title, msg FROM important_dates WHERE the_date = {date};"
-        myCursor.execute(sql1)
+        sql1 = "SELECT the_date, the_time, title, msg FROM important_dates WHERE the_date = %s;"
+        args = (date, )
+        myCursor.execute(sql1, args)
         rows = myCursor.fetchall()
-        for the_dates, in rows:
+        for the_dates in rows:
             for the_date in the_dates:
                 importantInfo.append(the_date)
-        sql2 = f"DELETE FROM important_dates WHERE the_date = {date};"
-        myCursor.execute(sql2)
+        sql2 = "DELETE FROM important_dates WHERE the_date = %s;"
+        args = (date, )
+        myCursor.execute(sql2, args)
+        myCon.commit()
         myCursor.close()
         myCon.close()
         return importantInfo
+    
