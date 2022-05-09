@@ -1,5 +1,8 @@
 import unittest
+from unittest import mock
 import RunningOp
+from plyer import notification
+from unittest.mock import Mock
 
 
 class test_RunninOp(unittest.TestCase):
@@ -15,6 +18,8 @@ class test_RunninOp(unittest.TestCase):
             var_1 = RunningOp.checkTimeFormat(bool_1)
         except BaseException:
             pass
+        rightTime = "10:00"
+        self.assertTrue(RunningOp.checkTimeFormat(rightTime))
         
     def test_play_music(self):
         try:
@@ -39,15 +44,62 @@ class test_RunninOp(unittest.TestCase):
             var_1 = RunningOp.play_music(bytes_3)
         except BaseException:
             pass
+        
+    # def test_play_music2(self):
+    #     link = "https://www.youtube.com/watch?v=Wch3gJG2GJ4"
+    #     RunningOp.play_music(link)
+    #     mocker = Mock()
+        
+    #     mocker.new()
+    #     mocker.getbestaudio()
+        
+    #     mocker.Instance()
+    #     mocker.media_player_new()
+    #     mocker.media_new()
+    #     mocker.get_mrl()
+    #     mocker.set_media()
+    #     mocker.play()
+    #     mocker.sleep()
+    #     mocker.stop()
+        
+    #     self.assertIsNone(mocker.new.assert_called_once())
+    #     self.assertIsNone(mocker.getbestaudio.assert_called_once())
+    #     self.assertIsNone(mocker.Instance.assert_called_once())
+    #     self.assertIsNone(mocker.media_player_new.assert_called_once())
+    #     self.assertIsNone(mocker.media_new.assert_called_once())
+    #     self.assertIsNone(mocker.get_mrl.assert_called_once())
+    #     self.assertIsNone(mocker.set_media.assert_called_once())
+    #     self.assertIsNone(mocker.play.assert_called_once())
+    #     self.assertIsNone(mocker.sleep.assert_called_once())
+    #     self.assertIsNone(mocker.stop.assert_called_once())
+        
 
 
     def test_viewNotification(self):
-        float_0 = 2355.033989
+        float_0 = "2355.033989"
         str_0 = '1-`'
         complex_0 = None
         tuple_0 = ()
         bool_0 = False
         var_0 = RunningOp.viewNotification(float_0, str_0, complex_0, tuple_0, bool_0)
+        
+    @mock.patch("RunningOp.viewDateNotification")
+    def test_viewDateNotification(self, mock_notification):
+        date = "22-08-2022"
+        clock = "10:11"
+        starter = "Test"
+        msg = "Hey there"
+        ico = "Icons/Meh.ico"
+        displayTime = 5
+        mock_notification(starter, date, clock, msg, ico, displayTime)
+        mock_notification.assert_called_once_with(starter, date, clock, msg, ico, displayTime)
+        # RunningOp.viewDateNotification(starter, date, clock, msg, ico, displayTime)
+        # self.assertTrue(notification.notify)
+        mock2 = Mock()
+        mock2.notify()
+        
+        self.assertIsNone(mock2.notify.assert_called_once())
+    
         
 if __name__ == '__main__':
     unittest.main()
