@@ -1,8 +1,11 @@
 import unittest
+from unittest import TestCase
+from unittest.mock import Mock
 import Database as module_0
+mock = Mock()
 
 
-class test_database(unittest.TestCase):
+class test_database(TestCase):
     
     def test_play_songs_order(self):
         database_0 = module_0.Database()
@@ -41,6 +44,55 @@ class test_database(unittest.TestCase):
 
         database_1 = module_0.Database()
         assert database_1 is not None
+        
+    def test_write_important(self):
+        assert module_0.Database.conInfo == {'user': 'userPro', 'password': 'pass', 'host': '127.0.0.1', 
+                                             'port': '3306', 'database': 'Prorest', 'raise_on_warnings': True}
+        conInfo = {'user': 'userPro', 'password': 'pass', 'host': '127.0.0.1', 
+                                             'port': '3306', 'database': 'Prorest', 'raise_on_warnings': True}
+        date = "2022-01-05"
+        time = "10:00"
+        title = "title"
+        message = "msg"
+        d = module_0.Database()
+        d.write_important(date, time, title, message)
+        
+        mock.connector.connect(**conInfo)
+        mock.cursor()
+        mock.execute()
+        mock.commit()
+        mock.close()
+        mock.close()
+        
+        self.assertIsNone(mock.connector.connect.assert_called_once())
+        self.assertIsNone(mock.cursor.assert_called_once())
+        self.assertIsNone(mock.execute.assert_called_once())
+        self.assertIsNone(mock.commit.assert_called_once())
+        self.assertIsNone(mock.close.assert_called())
+    
+    def test_read_important(self):
+        assert module_0.Database.conInfo == {'user': 'userPro', 'password': 'pass', 'host': '127.0.0.1', 
+                                             'port': '3306', 'database': 'Prorest', 'raise_on_warnings': True}
+        conInfo = {'user': 'userPro', 'password': 'pass', 'host': '127.0.0.1', 
+                                             'port': '3306', 'database': 'Prorest', 'raise_on_warnings': True}
+        date = "2022-01-05"
+        d = module_0.Database()
+        d.read_important(date)
+        mock2 = Mock()
+        mock2.connector.connect(**conInfo)
+        mock2.cursor()
+        mock2.execute()
+        mock2.fetchall()
+        mock2.commit()
+        mock2.close()
+        mock2.close()
+        
+        self.assertIsNone(mock2.connector.connect.assert_called_once())
+        self.assertIsNone(mock2.cursor.assert_called_once())
+        self.assertIsNone(mock2.execute.assert_called())
+        self.assertIsNone(mock2.fetchall.assert_called_once())
+        self.assertIsNone(mock2.commit.assert_called_once())
+        self.assertIsNone(mock2.close.assert_called())
     
 if __name__ == '__main__':
     unittest.main()
