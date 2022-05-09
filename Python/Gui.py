@@ -352,7 +352,8 @@ class Ui_Prorest(QDialog):
         else:
             self.time_format_label.setText("Please use the right format (HH:MM)")
             self.write_time_bar.setText("")
-            
+
+
     def timer_song_play(self):
         """Start the music automatically when the time selected matches the current time"""
         WorkerThread.songTimer = True
