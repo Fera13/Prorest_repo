@@ -1,7 +1,9 @@
-
+from Database import Database
 
 def main():
-    pass
+    d = Database()
+    myList = d.check_important_dates()
+    print(myList)
 
 def do_nothing():
     print("hi")

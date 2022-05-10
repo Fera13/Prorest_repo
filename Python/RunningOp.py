@@ -69,5 +69,5 @@ def check_date_format(input):
             return True
         else:
             return False
-    except ValueError:
+    except TypeError:
         return False

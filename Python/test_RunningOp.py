@@ -1,11 +1,11 @@
 import unittest
 from unittest import mock
 import RunningOp
-from plyer import notification
 from unittest.mock import Mock
 
 
 class test_RunninOp(unittest.TestCase):
+    
     def test_isTimeFormat(self):
         bool_0 = False
         dict_0 = {bool_0: bool_0, bool_0: bool_0}
@@ -45,35 +45,32 @@ class test_RunninOp(unittest.TestCase):
         except BaseException:
             pass
         
-    # def test_play_music2(self):
-    #     link = "https://www.youtube.com/watch?v=Wch3gJG2GJ4"
-    #     RunningOp.play_music(link)
-    #     mocker = Mock()
+    def test_play_music2(self):
+        link = "https://www.youtube.com/watch?v=Wch3gJG2GJ4"
+        RunningOp.play_music(link)
+        mocker = Mock()
         
-    #     mocker.new()
-    #     mocker.getbestaudio()
+        mocker.new()
+        mocker.getbestaudio()
+        mocker.Instance()
+        mocker.media_player_new()
+        mocker.media_new()
+        mocker.get_mrl()
+        mocker.set_media()
+        mocker.play()
+        mocker.sleep()
+        mocker.stop()
         
-    #     mocker.Instance()
-    #     mocker.media_player_new()
-    #     mocker.media_new()
-    #     mocker.get_mrl()
-    #     mocker.set_media()
-    #     mocker.play()
-    #     mocker.sleep()
-    #     mocker.stop()
-        
-    #     self.assertIsNone(mocker.new.assert_called_once())
-    #     self.assertIsNone(mocker.getbestaudio.assert_called_once())
-    #     self.assertIsNone(mocker.Instance.assert_called_once())
-    #     self.assertIsNone(mocker.media_player_new.assert_called_once())
-    #     self.assertIsNone(mocker.media_new.assert_called_once())
-    #     self.assertIsNone(mocker.get_mrl.assert_called_once())
-    #     self.assertIsNone(mocker.set_media.assert_called_once())
-    #     self.assertIsNone(mocker.play.assert_called_once())
-    #     self.assertIsNone(mocker.sleep.assert_called_once())
-    #     self.assertIsNone(mocker.stop.assert_called_once())
-        
-
+        self.assertIsNone(mocker.new.assert_called_once())
+        self.assertIsNone(mocker.getbestaudio.assert_called_once())
+        self.assertIsNone(mocker.Instance.assert_called_once())
+        self.assertIsNone(mocker.media_player_new.assert_called_once())
+        self.assertIsNone(mocker.media_new.assert_called_once())
+        self.assertIsNone(mocker.get_mrl.assert_called_once())
+        self.assertIsNone(mocker.set_media.assert_called_once())
+        self.assertIsNone(mocker.play.assert_called_once())
+        self.assertIsNone(mocker.sleep.assert_called_once())
+        self.assertIsNone(mocker.stop.assert_called_once())
 
     def test_viewNotification(self):
         float_0 = "2355.033989"
@@ -85,20 +82,31 @@ class test_RunninOp(unittest.TestCase):
         
     @mock.patch("RunningOp.viewDateNotification")
     def test_viewDateNotification(self, mock_notification):
-        date = "22-08-2022"
-        clock = "10:11"
-        starter = "Test"
-        msg = "Hey there"
+        list_of_dates = ["2022-01-02", "2021-05-17"]
         ico = "Icons/Meh.ico"
         displayTime = 5
-        mock_notification(starter, date, clock, msg, ico, displayTime)
-        mock_notification.assert_called_once_with(starter, date, clock, msg, ico, displayTime)
-        # RunningOp.viewDateNotification(starter, date, clock, msg, ico, displayTime)
-        # self.assertTrue(notification.notify)
-        mock2 = Mock()
-        mock2.notify()
+        mock_notification(list_of_dates, ico, displayTime)
+        mock_notification.assert_called_once_with(list_of_dates, ico, displayTime)
         
-        self.assertIsNone(mock2.notify.assert_called_once())
+    @mock.patch("RunningOp.viewQuoteNotification")
+    def test_viewQuoteNotification_notify(self, mock_quote_notification):
+        msg = "Hi"
+        ico = "Icons/Meh.ico"
+        title = "FOR YOU"
+        app_name = "Prorest"
+        displayTime = 5
+        
+        mock_quote_notification.notify(title, msg, app_name, ico, displayTime)
+        mock_quote_notification.notify.assert_called_with(title, msg, app_name, ico, displayTime)
+
+    def test_check_date_format(self):
+        input1 = "Hi"
+        input2 = "2022-01-05"
+        input3 = 3
+        
+        self.assertTrue(RunningOp.check_date_format(input2))
+        self.assertFalse(RunningOp.check_date_format(input1))
+        self.assertFalse(RunningOp.check_date_format(input3))
     
         
 if __name__ == '__main__':

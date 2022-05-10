@@ -16,6 +16,12 @@ CREATE TABLE quotes (
     quote VARCHAR(400)
 );
 
+CREATE TABLE refs (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sources VARCHAR(200),
+    link VARCHAR(200)
+);
+
 CREATE TABLE snacks (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     snack_name VARCHAR(160),
@@ -23,12 +29,6 @@ CREATE TABLE snacks (
     source_id INT NOT NULL,
     FOREIGN KEY (source_id) REFERENCES refs(id)
     
-);
-
-CREATE TABLE refs (
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    sources VARCHAR(200),
-    link VARCHAR(200)
 );
 
 CREATE TABLE important_dates (
@@ -39,6 +39,10 @@ CREATE TABLE important_dates (
     msg VARCHAR(200)
 );
 
+INSERT INTO refs(sources, link) VALUES
+("INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
+("Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower");
+
 INSERT INTO snacks(snack_name, benefits, source_id) VALUES
 ("Bananas", "They’re full of complex carbohydrates, vitamin B6, potassium and even a little protein.", 1),
 ("Dates", "Dates contain vitamins and minerals like iron, manganese, copper, potassium and magnesium, in addition to fiber and antioxidants.", 1),
@@ -47,10 +51,6 @@ INSERT INTO snacks(snack_name, benefits, source_id) VALUES
 ("Leafy vegetables", "such as kale, spinach, collards, and broccoli are rich in brain-healthy nutrients like vitamin K, lutein, folate, and beta carotene. Research suggests these plant-based foods may help slow cognitive decline.", 2),
 ("Berries", "improves memory and delays memory decline", 2),
 ("Walnuts", "Walnuts are high in a type of omega-3 fatty acid called alpha-linolenic acid (ALA). Diets rich in ALA and other omega-3 fatty acids have been linked to lower blood pressure and cleaner arteries.", 2);
-
-INSERT INTO refs(sources, link) VALUES
-("INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
-("Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower");
 
 INSERT INTO songs(song_name, artist, yt_link, channel_name, credit) VALUES
 (	"Purpose", "Jonny Easton", "https://www.youtube.com/watch?v=eZEczfSAjVQ", "BreakingCopyright — Royalty Free Music", 
