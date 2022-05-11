@@ -39,7 +39,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
      <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>4</number>
     </property>
     <property name="iconSize">
      <size>
@@ -605,9 +605,9 @@ font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
      <widget class="QPushButton" name="quote_btn">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>530</y>
-        <width>191</width>
+        <x>20</x>
+        <y>470</y>
+        <width>291</width>
         <height>61</height>
        </rect>
       </property>
@@ -619,7 +619,7 @@ font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
 font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
       </property>
       <property name="text">
-       <string>Turn on</string>
+       <string>Free Quotes : on</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="write_quote">
@@ -633,6 +633,26 @@ font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="quote_btn_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>550</y>
+        <width>291</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Your own Quotes : on</string>
       </property>
      </widget>
     </widget>

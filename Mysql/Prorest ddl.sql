@@ -11,7 +11,12 @@ CREATE TABLE songs (
     credit VARCHAR(300)
 );
 
-CREATE TABLE quotes (
+CREATE TABLE def_quotes (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    quote VARCHAR(400)
+);
+
+CREATE TABLE per_quotes (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     quote VARCHAR(400)
 );
@@ -82,7 +87,7 @@ INSERT INTO songs(song_name, artist, yt_link, channel_name, credit) VALUES
 (	"Sardana", "Kevin MacLeod", "https://www.youtube.com/watch?v=SzqPoVNrvMc", "BreakingCopyright — Royalty Free Music",
 	"Music: Kevin MacLeod - Sardana Promoted by Incompetech: https://youtu.be/Xohu_aq8oqk");
     
-INSERT INTO quotes(id, quote) VALUES
+INSERT INTO def_quotes(id, quote) VALUES
 (1, "Nothing is impossible!"),
 (2, "When you have a dream, you’ve got to grab it and never let go."),
 (3, "A positive mindset brings positive things!"),

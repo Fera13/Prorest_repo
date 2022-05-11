@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Prorest10.ui'
+# Form implementation generated from reading ui file 'Prorest11.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -31,6 +31,7 @@ class Ui_Prorest(QDialog):
     snackChoice = 1
     important_dates = 1
     quote = 1
+    per_quote = 1
     
     def setupUi(self, Prorest):
         """The skeleton of the program"""
@@ -230,8 +231,8 @@ class Ui_Prorest(QDialog):
         self.set_quote_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.set_quote_btn.setObjectName("set_quote_btn")
-        self.quote_btn = QtWidgets.QPushButton(self.tab_6, clicked = lambda: self.quote_press())
-        self.quote_btn.setGeometry(QtCore.QRect(60, 530, 191, 61))
+        self.quote_btn = QtWidgets.QPushButton(self.tab_6, clicked = lambda: self.def_quote_press())
+        self.quote_btn.setGeometry(QtCore.QRect(20, 470, 291, 61))
         self.quote_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.quote_btn.setObjectName("quote_btn")
@@ -239,6 +240,11 @@ class Ui_Prorest(QDialog):
         self.write_quote.setGeometry(QtCore.QRect(620, 470, 351, 51))
         self.write_quote.setText("")
         self.write_quote.setObjectName("write_quote")
+        self.quote_btn_2 = QtWidgets.QPushButton(self.tab_6, clicked = lambda:self.per_quote_press())
+        self.quote_btn_2.setGeometry(QtCore.QRect(20, 550, 291, 61))
+        self.quote_btn_2.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));\n"
+"font: 75 14pt \"Berlin Sans FB Demi\";")
+        self.quote_btn_2.setObjectName("quote_btn_2")
         self.tabWidget.addTab(self.tab_6, "")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
@@ -263,7 +269,7 @@ class Ui_Prorest(QDialog):
         Prorest.setStatusBar(self.statusbar)
         
         self.retranslateUi(Prorest)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(Prorest)
         self.notify_important_dates()
 
@@ -296,14 +302,16 @@ class Ui_Prorest(QDialog):
         self.set_date_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:8pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.set_date_btn.setText(_translate("Prorest", "Set Date Reminder"))
         self.information_label_2.setText(_translate("Prorest", "     When you are done, click on the button in the bottom."))
-        self.time_format_label_2.setText(_translate("Prorest", "             Is it in a right Format ?"))
+        self.time_format_label_2.setText(_translate("Prorest", "           Is it in a right Format ?"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Prorest", "Important Dates"))
         self.resourse_label.setText(_translate("Prorest", d.read_references()))
         self.quote_label_1.setText(_translate("Prorest", "  You can enter your funny quotes"))
         self.set_quote_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:8pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.set_quote_btn.setText(_translate("Prorest", "Set a Quote"))
         self.quote_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
-        self.quote_btn.setText(_translate("Prorest", "Turn on"))
+        self.quote_btn.setText(_translate("Prorest", "Free Quotes : on"))
+        self.quote_btn_2.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
+        self.quote_btn_2.setText(_translate("Prorest", "Your own Quotes : on"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("Prorest", "Funny Messages"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_5), _translate("Prorest", "Resources"))
 
@@ -345,7 +353,7 @@ class Ui_Prorest(QDialog):
             WorkerThread.randMusic = False
             self.Random_music_btn.setText("Randomize on")
             self.musicRandom = 1
-            
+
     def set_music_time_press(self, timeSelected):
         """Take the time selected. Check if the requirments are met and start or stop checking current time to play music automatically"""
         timeCheck = RunningOp.checkTimeFormat(timeSelected)
@@ -371,18 +379,17 @@ class Ui_Prorest(QDialog):
             self.time_format_label.setText("Please use the right format (HH:MM)")
             self.write_time_bar.setText("")
 
-
     def timer_song_play(self):
         """Start the music automatically when the time selected matches the current time"""
         WorkerThread.songTimer = True
         self.music_timer_play = 2
         self.worker = WorkerThread(5)
         self.worker.start()
-    
+
     def snack_recommend(self, text):
         """Applies the text to the label"""
         self.snacks_tips.setText(text)
-        
+
     def snack_press(self):
         """Check if the requirments are met and start or stop the snack notifications"""
         if self.snackChoice == 1:
@@ -395,7 +402,7 @@ class Ui_Prorest(QDialog):
             WorkerThread.snack = False
             self.snacks_btn.setText("Turn on")
             self.snackChoice = 1
-            
+
     def set_dates_press(self, date, time, title, msg):
         """Set an important date """
         d = Database()
@@ -404,9 +411,13 @@ class Ui_Prorest(QDialog):
         if dateCheck & timeCheck:
                 d.write_important(date, time, title, msg)
                 self.time_format_label_2.setText("           Is it in a right Format ?")
+                self.write_date.setText("")
+                self.write_time.setText("")
+                self.write_title.setText("")
+                self.write_message.setText("")
         else: 
             self.time_format_label_2.setText("      Check date and time format !")
-    
+
     def notify_important_dates(self):
         tomorrow_dates = d.check_important_dates()
         if tomorrow_dates == []:
@@ -415,25 +426,38 @@ class Ui_Prorest(QDialog):
             WorkerThread.date = True
             self.worker = WorkerThread(7)
             self.worker.start()
-            
+
     def set_quotes_press(self, quote):
         """Set a quote in database"""
         d = Database()
+        d.write_per_quote(quote)
+        self.write_quote.setText("")
+
+    def def_quote_press(self):
+        """Start or stop the default quotes' notifications"""
         if self.quote == 1:
-            d.write_quote(quote)
-        
-    def quote_press(self):
-        """Start or stop the quote notifications"""
-        if self.quote == 1:
-            self.quote_btn.setText("Turn off")
+            self.quote_btn.setText("Free Quotes : off")
             self.quote = 2
             WorkerThread.quote = True
             self.worker = WorkerThread(8)
             self.worker.start()
         else:
             WorkerThread.quote = False
-            self.quote_btn.setText("Turn on")
+            self.quote_btn.setText("Free Quotes : on")
             self.quote = 1
+
+    def per_quote_press(self):
+        """Start or stop the personal quotes' notifications"""
+        if self.per_quote == 1:
+            self.quote_btn_2.setText("Your own Quotes : off")
+            self.per_quote = 2
+            WorkerThread.per_quote = True
+            self.worker = WorkerThread(9)
+            self.worker.start()
+        else:
+            WorkerThread.per_quote = False
+            self.quote_btn_2.setText("Your own Quotes : on")
+            self.per_quote = 1
 
 class WorkerThread(QThread):
     running = True
@@ -446,6 +470,8 @@ class WorkerThread(QThread):
     snack = True
     date = True
     quote = True
+    per_quote = True
+    list_of_nrs = [300, 600, 1200, 1450, 1800, 3000, 3300]
 
     def __init__(self, workerNum):
         super().__init__()
@@ -473,7 +499,7 @@ class WorkerThread(QThread):
                     randsong = random.randint(0, len(songs)-1)
                     RunningOp.play_music(songs[randsong])
                     songs.pop(randsong)
-    
+
         elif self.workerNum == 4:
             while self.sTimer:
                 u = Ui_Prorest()
@@ -490,7 +516,7 @@ class WorkerThread(QThread):
                     randsong = random.randint(0, len(songs)-1)
                     RunningOp.play_music(songs[randsong])
                     songs.pop(randsong)
-        
+
         elif self.workerNum == 6:
             while self.snack:
                 RunningOp.viewNotification("It's time for some snacks and refreshments!", "Why don't you grab yourself a snack and some water? Give yourself some much needed energy :)", "Icons/1.ico", 60, 7200)
@@ -498,11 +524,18 @@ class WorkerThread(QThread):
         elif self.workerNum == 7:
             d = Database()
             RunningOp.viewDateNotification(d.read_important(date.today() + timedelta(days = 1)), "Icons/2.ico", 60)
-        
+
         elif self.workerNum == 8:
             d = Database()
             while self.quote:
-                RunningOp.viewQuoteNotification(d.read_quotes(), "Icons/3.ico", 30, 5400)
+                rand_time_0 = random.choice(self.list_of_nrs)
+                RunningOp.viewQuoteNotification(d.read_def_quotes(), "Icons/3.ico", 30, rand_time_0)
+
+        elif self.workerNum == 9:
+            d = Database()
+            while self.per_quote:
+                rand_time = random.choice(self.list_of_nrs)
+                RunningOp.viewQuoteNotification(d.read_per_quotes(), "Icons/3.ico", 30, rand_time)
 
 if __name__ == "__main__":
     import sys

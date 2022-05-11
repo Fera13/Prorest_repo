@@ -25,7 +25,7 @@ class Database:
         myCursor.close()
         myCon.close()
         return songs
-    
+
     def snack_recommendations(self):
         """Get a string of snacks from the database and return it"""
         snacks = "      Here are some tips!\n\n"
@@ -40,7 +40,7 @@ class Database:
         myCursor.close()
         myCon.close()
         return snacks
-    
+
     def write_important(self, date, time, title, message):
         """Writing important dates to the database"""
         myCon = mysql.connector.connect(**self.conInfo)
@@ -51,7 +51,7 @@ class Database:
         myCon.commit()
         myCursor.close()
         myCon.close()
-    
+
     def read_important(self, date):
         """Reading from important dates in the database based on the date"""
         importantInfo = []
@@ -92,22 +92,22 @@ class Database:
         all_refs = ""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
-        sql = "SELECT sources, link FROM refs;"
+        sql = "SELECT sources FROM refs;"
         myCursor.execute(sql, )
         rows = myCursor.fetchall()
         for row in rows:
-            string_1 = f"\n{row[0]}\n{row[1]}\n"
+            string_1 = f"\n{row[0]}\n"
             all_refs += string_1
             string_1 = ""
         myCursor.close()
         myCon.close()
         return all_refs
-   
-    def read_quotes(self):
-        """Reading from quotes in the database"""
+
+    def read_def_quotes(self):
+        """Reading from the default quotes in the database"""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
-        sql = "SELECT quote FROM quotes ORDER BY RAND() LIMIT 1;"
+        sql = "SELECT quote FROM def_quotes ORDER BY RAND() LIMIT 1;"
         myCursor.execute(sql, )
         rows = myCursor.fetchall()
         for row in rows:
@@ -116,11 +116,24 @@ class Database:
         myCon.close()
         return string_0
 
-    def write_quote(self, quote_0):
+    def read_per_quotes(self):
+        """Reading from personal quotes in the database"""
+        myCon = mysql.connector.connect(**self.conInfo)
+        myCursor = myCon.cursor(prepared=True)
+        sql = "SELECT quote FROM per_quotes ORDER BY RAND() LIMIT 1;"
+        myCursor.execute(sql, )
+        rows = myCursor.fetchall()
+        for row in rows:
+            string_0 = row[0]
+        myCursor.close()
+        myCon.close()
+        return string_0
+
+    def write_per_quote(self, quote_0):
         """Writing a quote to the database"""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
-        sql = "INSERT INTO quotes (quote) VALUES (%s);"
+        sql = "INSERT INTO per_quotes (quote) VALUES (%s);"
         args = (quote_0, )
         myCursor.execute(sql, args)
         myCon.commit()
