@@ -2,7 +2,7 @@ from Database import Database
 
 def main():
     d = Database()
-    myList = d.check_important_dates()
+    myList = d.read_per_quotes()
     print(myList)
 
 def do_nothing():

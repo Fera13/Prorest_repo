@@ -96,6 +96,5 @@ INSERT INTO def_quotes(id, quote) VALUES
 (6, "Once you replace negative thoughts with positive ones, you’ll start having positive results."),
 (7, "The only time you fail is when you fall down and stay down."),
 (8, "If opportunity doesn’t knock, build a door."),
-(9, "Happiness is an attitude. We either make ourselves miserable, or happy and strong. The amount of work is
-the same."),
+(9, "Happiness is an attitude. We either make ourselves miserable, or happy and strong. The amount of work is the same."),
 (10, "It’s not whether you get knocked down, it’s whether you get up.");
