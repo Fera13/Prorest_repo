@@ -60,7 +60,7 @@ class Ui_Prorest(QDialog):
         self.break_bg.setPixmap(QtGui.QPixmap("../Python/BG/ThinkstockPhotos-489763838-e1490767826261.jpg"))
         self.break_bg.setScaledContents(True)
         self.break_bg.setObjectName("break_bg")
-        self.break_btn = QtWidgets.QPushButton(self.tab)
+        self.break_btn = QtWidgets.QPushButton(self.tab, clicked = lambda: self.break_press())
         self.break_btn.setGeometry(QtCore.QRect(750, 150, 191, 61))
         self.break_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(151, 241, 51, 241), stop:0.994737 rgba(255, 188, 57, 224));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
