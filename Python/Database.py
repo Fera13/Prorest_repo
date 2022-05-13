@@ -118,16 +118,21 @@ class Database:
 
     def read_per_quotes(self):
         """Reading from personal quotes in the database"""
+        string_0 = ""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
         sql = "SELECT quote FROM per_quotes ORDER BY RAND() LIMIT 1;"
         myCursor.execute(sql, )
         rows = myCursor.fetchall()
         for row in rows:
-            string_0 = row[0]
+            string_0 += row[0]
         myCursor.close()
         myCon.close()
-        return string_0
+        if string_0 == "":
+            string_0 = "Add your first quote ;)"
+            return string_0
+        else:
+            return string_0
 
     def write_per_quote(self, quote_0):
         """Writing a quote to the database"""
