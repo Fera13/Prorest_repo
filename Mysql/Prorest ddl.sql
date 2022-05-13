@@ -46,6 +46,7 @@ CREATE TABLE important_dates (
 
 INSERT INTO refs(sources, link) VALUES
 ("INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
+("Cirillo, F., 2006. The pomodoro technique (the pomodoro). Agile Processes in Software Engineering and, 54(2), p.35.", "http://3.249.194.220/download/pomodoro-technique.pdf"),
 ("Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower");
 
 INSERT INTO snacks(snack_name, benefits, source_id) VALUES
