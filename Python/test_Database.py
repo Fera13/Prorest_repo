@@ -95,40 +95,14 @@ class test_database(TestCase):
         self.assertIsNone(mock2.commit.assert_called_once())
         self.assertIsNone(mock2.close.assert_called())
 
-    # @mock.patch("Database.read_important")
-    # def test_read_important2(self, mock_read_important2):
-    #     date = "2022-01-05"
-    #     app = module_0()
-    #     expected = [("13:00", "Meeting", "Be ready")]
-    #     mock_read_important2.side_effect = [[("13:00", "Meeting", "Be ready")], [("13:00", "Meeting", "Be ready"), ("15:00", "Hi", "How are you")], [("17:00", "Meeting", "Oh no"), ("15:00", "Maybe", "Testing code"), ("13:00", "Meeting", "Be ready")]]
-    #     self.assertListEqual(app.read_important(date), expected)
-    
     def test_check_important_dates(self):
-        mock3 = Mock()
-        mock3.today()
-        mock3.connector.connect()
-        mock3.cursor()
-        mock3.execute()
-        mock3.fetchall()
-        mock3.append()
-        mock3.close()
-        mock3.close()
-        
-        self.assertIsNone(mock3.today.assert_called_once())
-        self.assertIsNone(mock3.connector.connect.assert_called_once())
-        self.assertIsNone(mock3.cursor.assert_called_once())
-        self.assertIsNone(mock3.execute.assert_called())
-        self.assertIsNone(mock3.fetchall.assert_called_once())
-        self.assertIsNone(mock3.append.assert_called())
-        self.assertIsNone(mock3.close.assert_called())
-        
-    # @mock.patch("Database.check_important_dates")
-    # def test_check_important_dates2(self, mock_check_important_dates2):
-        
-    #     app = module_0()
-    #     expected = [("datetime.date(2022, 5, 13)",)]
-    #     mock_check_important_dates2.side_effect = [[("datetime.date(2022, 7, 15)",)], [("datetime.date(2022, 5, 13)",)]]
-    #     self.assertListEqual(app.check_important_dates(), expected)
+        app = module_0.Database()
+        if app.check_important_dates() == []:
+            expected = []
+            self.assertListEqual(app.check_important_dates(), expected)
+        else:
+            expected = app.check_important_dates()
+            self.assertListEqual(app.check_important_dates(), expected)
     
     def test_read_references(self):
         d = module_0.Database()
@@ -146,45 +120,17 @@ class test_database(TestCase):
         self.assertIsNone(mock4.execute.assert_called())
         self.assertIsNone(mock4.fetchall.assert_called_once())
         self.assertIsNone(mock4.close.assert_called())
-        
-    # @mock.patch("Database.read_references")
-    # def test_read_references(self, mock_read_references2):
-        
-    #     app = module_0()
-    #     expected = "ref"
-    #     mock_read_references2.return_value = "ref"
-    #     self.assertEqual(app.read_references(), expected)
-    
-    def test_read_def_quotes(self):
-        d = module_0.Database()
-        d.read_def_quotes()
-        mock5 = Mock()
-        mock5.connector.connect()
-        mock5.cursor()
-        mock5.execute()
-        mock5.fetchall()
-        mock5.close()
-        mock5.close()
-        
-        self.assertIsNone(mock5.connector.connect.assert_called_once())
-        self.assertIsNone(mock5.cursor.assert_called_once())
-        self.assertIsNone(mock5.execute.assert_called())
-        self.assertIsNone(mock5.fetchall.assert_called_once())
-        self.assertIsNone(mock5.close.assert_called())
 
-    # @mock.patch("Database.read_def_quotes")
-    # def test_read_def_quotes(self, mock_read_def_quotes):
-        
-    #     app = module_0()
-    #     expected = "Nothing is impossible!"
-    #     mock_read_def_quotes.side_effect = ["A positive mindset brings positive things!",
-    #                                     "When you have a dream, you’ve got to grab it and never let go.",
-    #                                     "Nothing is impossible!", "You will always pass failure on your way to success.",
-    #                                     "It always seems impossible until it is done.", "Once you replace negative thoughts with positive ones, you’ll start having positive results.",
-    #                                     "The only time you fail is when you fall down and stay down.", "If opportunity doesn’t knock, build a door.",
-    #                                     "Happiness is an attitude. We either make ourselves miserable, or happy and strong. The amount of work is the same.",
-    #                                     "It’s not whether you get knocked down, it’s whether you get up."]
-    #     self.assertEqual(app.read_def_quotes(), expected)
+    def test_read_def_quotes(self):
+        app = module_0.Database()
+        randomQ = set([app.read_def_quotes()])
+        expected = set(["A positive mindset brings positive things!",
+                                        "When you have a dream, you’ve got to grab it and never let go.", "You will always pass failure on your way to success.",
+                                        "It always seems impossible until it is done.", "Once you replace negative thoughts with positive ones, you’ll start having positive results.",
+                                        "The only time you fail is when you fall down and stay down.", "If opportunity doesn’t knock, build a door.",
+                                        "Happiness is an attitude. We either make ourselves miserable, or happy and strong. The amount of work is the same.",
+                                        "It’s not whether you get knocked down, it’s whether you get up.", "Nothing is impossible!"])
+        self.assertTrue(expected.issuperset(randomQ))
     
     def test_read_per_quotes(self):
         d = module_0.Database()
@@ -202,21 +148,8 @@ class test_database(TestCase):
         self.assertIsNone(mock5.execute.assert_called())
         self.assertIsNone(mock5.fetchall.assert_called_once())
         self.assertIsNone(mock5.close.assert_called())
-
-    # @mock.patch("Database.read_per_quotes")
-    # def test_read_per_quotes(self, mock_read_per_quotes):
-        
-    #     app = module_0()
-    #     expected = "Nothing is impossible!"
-    #     mock_read_per_quotes.side_effect = ["A positive mindset brings positive things!",
-    #                                     "When you have a dream, you’ve got to grab it and never let go.",
-    #                                     "Nothing is impossible!"]
-    #     self.assertEqual(app.read_def_quotes(), expected)
     
     def test_write_per_quote(self):
-        # qoute = "I am alive"
-        # d = module_0.Database()
-        # d.write_per_quote(qoute)
         mock6 = Mock()
         mock6.connector.connect()
         mock6.cursor()
@@ -230,12 +163,7 @@ class test_database(TestCase):
         self.assertIsNone(mock6.execute.assert_called())
         self.assertIsNone(mock6.commit.assert_called_once())
         self.assertIsNone(mock6.close.assert_called())
-        
 
-        
-    
-        
-        
     
 if __name__ == '__main__':
     unittest.main()

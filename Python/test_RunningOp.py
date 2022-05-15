@@ -49,7 +49,6 @@ class test_RunninOp(unittest.TestCase):
         link = "https://www.youtube.com/watch?v=Wch3gJG2GJ4"
         RunningOp.play_music(link)
         mocker = Mock()
-        
         mocker.new()
         mocker.getbestaudio()
         mocker.Instance()
@@ -82,11 +81,11 @@ class test_RunninOp(unittest.TestCase):
         
     @mock.patch("RunningOp.viewDateNotification")
     def test_viewDateNotification(self, mock_notification):
-        list_of_dates = ["2022-01-02", "2021-05-17"]
+        list_of_dates = [("23:11", "Meeting", "Get ready"), ("20:12", "Comp", "Draw something")]
         ico = "Icons/Meh.ico"
         displayTime = 5
         mock_notification(list_of_dates, ico, displayTime)
-        mock_notification.assert_called_once_with(list_of_dates, ico, displayTime)
+        self.assertIsNone(mock_notification.assert_called_once_with(list_of_dates, ico, displayTime))
         
     @mock.patch("RunningOp.viewQuoteNotification")
     def test_viewQuoteNotification_notify(self, mock_quote_notification):

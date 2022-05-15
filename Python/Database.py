@@ -11,7 +11,7 @@ class Database:
     def __init__(self):
         pass
 
-    def play_songs_order(self):
+    def play_songs_order(self) -> list:
         """Get a list of song links from the database and return it"""
         songs = []
         myCon = mysql.connector.connect(**self.conInfo)
@@ -26,7 +26,7 @@ class Database:
         myCon.close()
         return songs
 
-    def snack_recommendations(self):
+    def snack_recommendations(self) -> str:
         """Get a string of snacks from the database and return it"""
         snacks = "      Here are some tips!\n\n"
         myCon = mysql.connector.connect(**self.conInfo)
@@ -40,7 +40,7 @@ class Database:
         myCursor.close()
         myCon.close()
         return snacks
-
+    #add a function that is similar but takes id for testing
     def write_important(self, date, time, title, message):
         """Writing important dates to the database"""
         myCon = mysql.connector.connect(**self.conInfo)
@@ -52,7 +52,7 @@ class Database:
         myCursor.close()
         myCon.close()
 
-    def read_important(self, date):
+    def read_important(self, date) -> list:
         """Reading from important dates in the database based on the date"""
         importantInfo = []
         myCon = mysql.connector.connect(**self.conInfo)
@@ -71,7 +71,7 @@ class Database:
         myCon.close()
         return importantInfo
 
-    def check_important_dates(self):
+    def check_important_dates(self) -> list:
         """Check if there is important dates for tomorrow"""
         importantInfo = []
         date_0 = date.today() + timedelta(days = 1)
@@ -87,7 +87,7 @@ class Database:
         myCon.close()
         return importantInfo
 
-    def read_references(self):
+    def read_references(self) -> str:
         """Reading from references in the database"""
         all_refs = ""
         myCon = mysql.connector.connect(**self.conInfo)
@@ -103,7 +103,7 @@ class Database:
         myCon.close()
         return all_refs
 
-    def read_def_quotes(self):
+    def read_def_quotes(self) -> str:
         """Reading from the default quotes in the database"""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
@@ -115,8 +115,9 @@ class Database:
         myCursor.close()
         myCon.close()
         return string_0
-
-    def read_per_quotes(self):
+    
+    #add a function that is similar but takes id for testing
+    def read_per_quotes(self) -> str:
         """Reading from personal quotes in the database"""
         string_0 = ""
         myCon = mysql.connector.connect(**self.conInfo)
@@ -133,7 +134,7 @@ class Database:
             return string_0
         else:
             return string_0
-
+    #add a function that is similar but takes id for testing
     def write_per_quote(self, quote_0):
         """Writing a quote to the database"""
         myCon = mysql.connector.connect(**self.conInfo)
