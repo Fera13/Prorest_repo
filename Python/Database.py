@@ -52,6 +52,31 @@ class Database:
         myCursor.close()
         myCon.close()
 
+    def write_wake_up(self, time):
+        """Writing wake up time to the database"""
+        myCon = mysql.connector.connect(**self.conInfo)
+        myCursor = myCon.cursor(prepared=True)
+        sql = "INSERT INTO wake_up_time (the_time) VALUES ( %s );", 
+        args = (time)
+        myCursor.execute(sql, args)
+        #myCursor.execute("DELETE FROM wake_up_time WHERE the_time != %s;", (time))
+        myCon.commit()
+        myCursor.close()
+        myCon.close()
+
+    def read_wake_up_time(self) -> str:
+        """Reading the time in the database"""
+        myCon = mysql.connector.connect(**self.conInfo)
+        myCursor = myCon.cursor(prepared=True)
+        sql = "SELECT the_time FROM wake_up_time LIMIT 1;"
+        myCursor.execute(sql, )
+        rows = myCursor.fetchall()
+        for row in rows:
+            time = row[0]
+        myCursor.close()
+        myCon.close()
+        return time
+
     def read_important(self, date) -> list:
         """Reading from important dates in the database based on the date"""
         importantInfo = []

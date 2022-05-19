@@ -1,6 +1,7 @@
 from socket import timeout
 import time
 import datetime
+from datetime import timedelta
 from charset_normalizer import detect
 import pafy
 import vlc
@@ -60,7 +61,23 @@ def viewQuoteNotification(msg, ico, displayTime, sleep_time):
                         app_icon = ico,
                         timeout = displayTime)
     time.sleep(sleep_time)
+
+
+
+def sleep_set_notification(message,title,icon):
+    notification.notify(
+        title=title,
+        message=message,
+        app_name = "Prorest",
+        app_icon=icon,
+        timeout=10,
+    )
     
+def calculate_time_difference(old_time, hours):
+        time_delta = timedelta(hours=hours)
+        new_time = old_time - time_delta
+        return new_time
+
 def check_date_format(input):
     """Checks if the date entered is the right format with the right values. Returns boolean"""
     try:

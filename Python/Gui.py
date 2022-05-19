@@ -19,6 +19,10 @@ import sys
 from Database import *
 import random
 from datetime import date, timedelta
+import time
+from datetime import datetime
+#from datetime import timedelta
+import schedule
 
 d = Database()
 
@@ -36,13 +40,13 @@ class Ui_Prorest(QDialog):
     def setupUi(self, Prorest):
         """The skeleton of the program"""
         Prorest.setObjectName("Prorest")
-        Prorest.resize(1075, 734)
+        Prorest.resize(1216, 717)
         Prorest.setStyleSheet("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(151, 45, 219, 252), stop:1 rgba(72, 151, 183, 252));\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 134, 213, 227), stop:0.994737 rgba(194, 255, 135, 252));")
         self.centralwidget = QtWidgets.QWidget(Prorest)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(20, 30, 1031, 681))
+        self.tabWidget.setGeometry(QtCore.QRect(10, 10, 1191, 681))
         self.tabWidget.setStyleSheet("font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
 "font-weight: bold;\n"
 "color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));\n"
@@ -50,65 +54,115 @@ class Ui_Prorest(QDialog):
 "\n"
 "")
         self.tabWidget.setTabShape(QtWidgets.QTabWidget.Triangular)
+        self.tabWidget.setIconSize(QtCore.QSize(16, 16))
         self.tabWidget.setElideMode(QtCore.Qt.ElideNone)
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.break_bg = QtWidgets.QLabel(self.tab)
-        self.break_bg.setGeometry(QtCore.QRect(0, 0, 1031, 661))
+        self.break_bg.setGeometry(QtCore.QRect(0, 0, 1191, 661))
         self.break_bg.setText("")
         self.break_bg.setPixmap(QtGui.QPixmap("../Python/BG/ThinkstockPhotos-489763838-e1490767826261.jpg"))
         self.break_bg.setScaledContents(True)
         self.break_bg.setObjectName("break_bg")
         self.break_btn = QtWidgets.QPushButton(self.tab, clicked = lambda: self.break_press())
-        self.break_btn.setGeometry(QtCore.QRect(750, 150, 191, 61))
+        self.break_btn.setGeometry(QtCore.QRect(900, 110, 191, 61))
         self.break_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(151, 241, 51, 241), stop:0.994737 rgba(255, 188, 57, 224));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.break_btn.setObjectName("break_btn")
         self.tabWidget.addTab(self.tab, "")
+        self.tab_8 = QtWidgets.QWidget()
+        self.tab_8.setObjectName("tab_8")
+        self.exercise_bg = QtWidgets.QLabel(self.tab_8)
+        self.exercise_bg.setGeometry(QtCore.QRect(0, 0, 1191, 661))
+        self.exercise_bg.setText("")
+        self.exercise_bg.setPixmap(QtGui.QPixmap("../Python/BG/yoga.jpg"))
+        self.exercise_bg.setScaledContents(True)
+        self.exercise_bg.setObjectName("exercise_bg")
+        self.information_label_8 = QtWidgets.QLabel(self.tab_8)
+        self.information_label_8.setGeometry(QtCore.QRect(20, 50, 771, 45))
+        self.information_label_8.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 22pt \"MS Shell Dlg 2\";\n"
+"font-weight: bold;\n"
+"color: rgb(255, 255, 255);")
+        self.information_label_8.setObjectName("information_label_8")
+        self.information_label_9 = QtWidgets.QLabel(self.tab_8)
+        self.information_label_9.setGeometry(QtCore.QRect(20, 30, 483, 22))
+        self.information_label_9.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 11pt \"MS Shell Dlg 2\";\n"
+"font-weight: bold;\n"
+"color: rgb(255, 255, 255);")
+        self.information_label_9.setObjectName("information_label_9")
+        self.exercise_btn = QtWidgets.QPushButton(self.tab_8)
+        self.exercise_btn.setGeometry(QtCore.QRect(50, 250, 361, 61))
+        font = QtGui.QFont()
+        font.setFamily("Berlin Sans FB Demi")
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.exercise_btn.setFont(font)
+        self.exercise_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 14pt \"Berlin Sans FB Demi\";\n"
+"color: rgb(255, 255, 255);")
+        self.exercise_btn.setObjectName("exercise_btn")
+        self.exercise_btn.clicked.connect(self.set_exercise_time)
+        self.exercise_time = QtWidgets.QLineEdit(self.tab_8)
+        self.exercise_time.setGeometry(QtCore.QRect(100, 150, 251, 41))
+        self.exercise_time.setStyleSheet("background-color: rgb(255, 193, 255);")
+        self.exercise_time.setText("")
+        self.exercise_time.setObjectName("exercise_time")
+        self.exercise_format = QtWidgets.QLabel(self.tab_8)
+        self.exercise_format.setGeometry(QtCore.QRect(90, 200, 271, 31))
+        self.exercise_format.setStyleSheet("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));\n"
+"font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"background-color: rgb(200, 151, 182);")
+        self.exercise_format.setObjectName("exercise_format")
+        self.tabWidget.addTab(self.tab_8, "")        
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
         self.music_bg = QtWidgets.QLabel(self.tab_2)
-        self.music_bg.setGeometry(QtCore.QRect(-210, -80, 1321, 761))
+        self.music_bg.setGeometry(QtCore.QRect(-210, -80, 1401, 761))
         self.music_bg.setText("")
         self.music_bg.setPixmap(QtGui.QPixmap("../Python/BG/maxresdefault2.jpg"))
         self.music_bg.setScaledContents(True)        
         self.music_bg.setObjectName("music_bg")
         self.music_btn = QtWidgets.QPushButton(self.tab_2, clicked = lambda: self.play_music_press())
-        self.music_btn.setGeometry(QtCore.QRect(750, 150, 191, 61))
+        self.music_btn.setGeometry(QtCore.QRect(790, 150, 191, 61))
         self.music_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(219, 200, 45, 252), stop:1 rgba(209, 255, 137, 252));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.music_btn.setObjectName("music_btn")
         self.Random_music_btn = QtWidgets.QPushButton(self.tab_2, clicked = lambda: self.play_random_music())
-        self.Random_music_btn.setGeometry(QtCore.QRect(750, 280, 191, 61))
+        self.Random_music_btn.setGeometry(QtCore.QRect(790, 280, 191, 61))
         self.Random_music_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(219, 200, 45, 252), stop:1 rgba(209, 255, 137, 252));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.Random_music_btn.setObjectName("Random_music_btn")
         self.Automated_music_btn = QtWidgets.QPushButton(self.tab_2, clicked = lambda: self.set_music_time_press(self.write_time_bar.text()))
-        self.Automated_music_btn.setGeometry(QtCore.QRect(750, 400, 191, 61))
+        self.Automated_music_btn.setGeometry(QtCore.QRect(790, 400, 191, 61))
         self.Automated_music_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(219, 200, 45, 252), stop:1 rgba(209, 255, 137, 252));\n"
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.Automated_music_btn.setObjectName("Automated_music_btn")
         self.label = QtWidgets.QLabel(self.tab_2)
-        self.label.setGeometry(QtCore.QRect(710, 60, 261, 31))
+        self.label.setGeometry(QtCore.QRect(750, 60, 261, 31))
         self.label.setStyleSheet("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));\n"
 "font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
 "font-weight: bold;\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 213, 63, 227), stop:0.994737 rgba(194, 255, 135, 252));")
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(self.tab_2)
-        self.label_2.setGeometry(QtCore.QRect(680, 90, 311, 31))
+        self.label_2.setGeometry(QtCore.QRect(730, 90, 311, 31))
         self.label_2.setStyleSheet("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));\n"
 "font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
 "font-weight: bold;\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 213, 63, 227), stop:0.994737 rgba(194, 255, 135, 252));")
         self.label_2.setObjectName("label_2")
         self.write_time_bar = QtWidgets.QLineEdit(self.tab_2)
-        self.write_time_bar.setGeometry(QtCore.QRect(770, 480, 151, 31))
+        self.write_time_bar.setGeometry(QtCore.QRect(810, 480, 151, 31))
         self.write_time_bar.setText("")
         self.write_time_bar.setObjectName("write_time_bar")
         self.time_format_label = QtWidgets.QLabel(self.tab_2)
-        self.time_format_label.setGeometry(QtCore.QRect(720, 530, 261, 31))
+        self.time_format_label.setGeometry(QtCore.QRect(750, 530, 261, 31))
         self.time_format_label.setStyleSheet("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));\n"
 "font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
 "font-weight: bold;\n"
@@ -118,7 +172,7 @@ class Ui_Prorest(QDialog):
         self.tab_3 = QtWidgets.QWidget()
         self.tab_3.setObjectName("tab_3")
         self.snacks_bg = QtWidgets.QLabel(self.tab_3)
-        self.snacks_bg.setGeometry(QtCore.QRect(0, -10, 1031, 751))
+        self.snacks_bg.setGeometry(QtCore.QRect(0, -10, 1191, 751))
         self.snacks_bg.setText("")
         self.snacks_bg.setPixmap(QtGui.QPixmap("../Python/BG/bread-toasted_WDGG60RQAJ.jpg"))
         self.snacks_bg.setScaledContents(True)
@@ -129,7 +183,7 @@ class Ui_Prorest(QDialog):
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.snacks_btn.setObjectName("snacks_btn")
         self.snacks_tips = QtWidgets.QLabel(self.tab_3)
-        self.snacks_tips.setGeometry(QtCore.QRect(10, 140, 331, 491))
+        self.snacks_tips.setGeometry(QtCore.QRect(40, 140, 331, 491))
         self.snacks_tips.setStyleSheet("font: 75 12pt \"Berlin Sans FB Demi\";\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 210, 56, 218), stop:0.994737 rgba(255, 180, 36, 224));")
         self.snacks_tips.setObjectName("snacks_tips")
@@ -137,7 +191,7 @@ class Ui_Prorest(QDialog):
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
         self.important_bg = QtWidgets.QLabel(self.tab_4)
-        self.important_bg.setGeometry(QtCore.QRect(-4, -8, 1031, 751))
+        self.important_bg.setGeometry(QtCore.QRect(-4, -8, 1201, 751))
         self.important_bg.setText("")
         self.important_bg.setPixmap(QtGui.QPixmap("../Python/BG/woman-writing_FFSUL8TZD3.jpg"))
         self.important_bg.setScaledContents(True)        
@@ -206,21 +260,112 @@ class Ui_Prorest(QDialog):
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 213, 63, 227), stop:0.994737 rgba(194, 255, 135, 252));")
         self.time_format_label_2.setObjectName("time_format_label_2")
         self.tabWidget.addTab(self.tab_4, "")
+        self.tab_7 = QtWidgets.QWidget()
+        self.tab_7.setObjectName("tab_7")
+        self.sleep_bg = QtWidgets.QLabel(self.tab_7)
+        self.sleep_bg.setGeometry(QtCore.QRect(-560, -10, 1801, 751))
+        self.sleep_bg.setText("")
+        self.sleep_bg.setPixmap(QtGui.QPixmap("../Python/BG/sleep.jpg"))
+        self.sleep_bg.setScaledContents(True)
+        self.sleep_bg.setObjectName("sleep_bg")
+        self.sleep_btn = QtWidgets.QPushButton(self.tab_7)
+        self.sleep_btn.setGeometry(QtCore.QRect(760, 480, 361, 61))
+        font = QtGui.QFont()
+        font.setFamily("Berlin Sans FB Demi")
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(9)
+        self.sleep_btn.setFont(font)
+        self.sleep_btn.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 14pt \"Berlin Sans FB Demi\";\n"
+"color: rgb(255, 255, 255);")
+        self.sleep_btn.setObjectName("sleep_btn")
+        self.sleep_btn.clicked.connect(self.set_sleep_reminder)
+        self.information_label_3 = QtWidgets.QLabel(self.tab_7)
+        self.information_label_3.setGeometry(QtCore.QRect(810, 10, 338, 18))
+        self.information_label_3.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"color: rgb(255, 255, 255);")
+        self.information_label_3.setObjectName("information_label_3")
+        self.information_label_4 = QtWidgets.QLabel(self.tab_7)
+        self.information_label_4.setGeometry(QtCore.QRect(640, 30, 511, 18))
+        self.information_label_4.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"color: rgb(255, 255, 255);")
+        self.information_label_4.setObjectName("information_label_4")
+        self.information_label_5 = QtWidgets.QLabel(self.tab_7)
+        self.information_label_5.setGeometry(QtCore.QRect(400, 50, 756, 18))
+        self.information_label_5.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"color: rgb(255, 255, 255);")
+        self.information_label_5.setObjectName("information_label_5")
+        self.hours_6 = QtWidgets.QRadioButton(self.tab_7)
+        self.hours_6.setGeometry(QtCore.QRect(830, 150, 231, 51))
+        self.hours_6.setStyleSheet("font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));\n"
+"background-color: rgb(255, 193, 255);")
+        self.hours_6.setObjectName("hours_6")
+        self.hours_7 = QtWidgets.QRadioButton(self.tab_7)
+        self.hours_7.setGeometry(QtCore.QRect(830, 200, 231, 51))
+        self.hours_7.setStyleSheet("font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));\n"
+"background-color: rgb(255, 193, 255);")
+        self.hours_7.setObjectName("hours_7")
+        self.hours_8 = QtWidgets.QRadioButton(self.tab_7)
+        self.hours_8.setGeometry(QtCore.QRect(830, 250, 231, 61))
+        self.hours_8.setStyleSheet("font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));\n"
+"background-color: rgb(255, 193, 255);")
+        self.hours_8.setObjectName("hours_8")
+        self.wake_up_time = QtWidgets.QLineEdit(self.tab_7)
+        self.wake_up_time.setGeometry(QtCore.QRect(810, 370, 251, 41))
+        self.wake_up_time.setStyleSheet("background-color: rgb(255, 193, 255);")
+        self.wake_up_time.setText("")
+        self.wake_up_time.setObjectName("wake_up_time")
+        self.information_label_6 = QtWidgets.QLabel(self.tab_7)
+        self.information_label_6.setGeometry(QtCore.QRect(680, 330, 422, 28))
+        self.information_label_6.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 14pt \"MS Shell Dlg 2\";\n"
+"font-weight: bold;\n"
+"color: rgb(255, 255, 255);")
+        self.information_label_6.setObjectName("information_label_6")
+        self.information_label_7 = QtWidgets.QLabel(self.tab_7)
+        self.information_label_7.setGeometry(QtCore.QRect(660, 120, 458, 28))
+        self.information_label_7.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));\n"
+"font: 75 14pt \"MS Shell Dlg 2\";\n"
+"font-weight: bold;\n"
+"color: rgb(255, 255, 255);")
+        self.information_label_7.setObjectName("information_label_7")
+        self.wake_up_time_format = QtWidgets.QLabel(self.tab_7)
+        self.wake_up_time_format.setGeometry(QtCore.QRect(810, 430, 271, 31))
+        self.wake_up_time_format.setStyleSheet("color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));\n"
+"font: 75 9.7pt \"Berlin Sans FB Demi\";\n"
+"font-weight: bold;\n"
+"background-color: rgb(200, 151, 182);")
+        self.wake_up_time_format.setObjectName("wake_up_time_format")
+        self.tabWidget.addTab(self.tab_7, "")
         self.tab_6 = QtWidgets.QWidget()
         self.tab_6.setObjectName("tab_6")
         self.quote_label = QtWidgets.QLabel(self.tab_6)
-        self.quote_label.setGeometry(QtCore.QRect(0, 0, 1031, 751))
+        self.quote_label.setGeometry(QtCore.QRect(0, 0, 1191, 751))
         self.quote_label.setText("")
         self.quote_label.setPixmap(QtGui.QPixmap("../Python/BG/funny.jpg"))
         self.quote_label.setScaledContents(True)
         self.quote_label.setObjectName("quote_label")
         self.quote_label_1 = QtWidgets.QLabel(self.tab_6)
-        self.quote_label_1.setGeometry(QtCore.QRect(660, 400, 271, 41))
+        self.quote_label_1.setGeometry(QtCore.QRect(800, 390, 271, 41))
         self.quote_label_1.setStyleSheet("font: 75 10pt \"Berlin Sans FB Demi\";\n"
 "color: rgb(0, 0, 0);")
         self.quote_label_1.setObjectName("quote_label_1")
         self.set_quote_btn = QtWidgets.QPushButton(self.tab_6, clicked = lambda: self.set_quotes_press(self.write_quote.text()))
-        self.set_quote_btn.setGeometry(QtCore.QRect(620, 550, 351, 61))
+        self.set_quote_btn.setGeometry(QtCore.QRect(750, 540, 351, 61))
         font = QtGui.QFont()
         font.setFamily("Berlin Sans FB Demi")
         font.setPointSize(14)
@@ -237,7 +382,7 @@ class Ui_Prorest(QDialog):
 "font: 75 14pt \"Berlin Sans FB Demi\";")
         self.quote_btn.setObjectName("quote_btn")
         self.write_quote = QtWidgets.QLineEdit(self.tab_6)
-        self.write_quote.setGeometry(QtCore.QRect(620, 470, 351, 51))
+        self.write_quote.setGeometry(QtCore.QRect(750, 470, 351, 51))
         self.write_quote.setText("")
         self.write_quote.setObjectName("write_quote")
         self.quote_btn_2 = QtWidgets.QPushButton(self.tab_6, clicked = lambda:self.per_quote_press())
@@ -249,17 +394,18 @@ class Ui_Prorest(QDialog):
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
         self.label_3 = QtWidgets.QLabel(self.tab_5)
-        self.label_3.setGeometry(QtCore.QRect(0, 0, 1031, 751))
+        self.label_3.setGeometry(QtCore.QRect(-20, -10, 1211, 751))
         self.label_3.setText("")
         self.label_3.setPixmap(QtGui.QPixmap("../Python/BG/books-library_6XANS2384I.jpg"))
         self.label_3.setScaledContents(True)        
         self.label_3.setObjectName("label_3")
         self.resourse_label = QtWidgets.QLabel(self.tab_5)
-        self.resourse_label.setGeometry(QtCore.QRect(40, 130, 941, 401))
+        self.resourse_label.setGeometry(QtCore.QRect(40, 130, 1031, 401))
         self.resourse_label.setStyleSheet("font: 12pt \"Imprint MT Shadow\";\n"
 "color: rgb(0, 0, 0);\n"
 "background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.88565, fy:0.817449, stop:0 rgba(255, 199, 41, 246), stop:0.994737 rgba(255, 180, 36, 224));\n"
 "")
+        self.resourse_label.setScaledContents(False)
         self.resourse_label.setWordWrap(True)
         self.resourse_label.setObjectName("resourse_label")
         self.tabWidget.addTab(self.tab_5, "")
@@ -269,7 +415,7 @@ class Ui_Prorest(QDialog):
         Prorest.setStatusBar(self.statusbar)
         
         self.retranslateUi(Prorest)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(7)
         QtCore.QMetaObject.connectSlotsByName(Prorest)
         self.notify_important_dates()
 
@@ -280,6 +426,12 @@ class Ui_Prorest(QDialog):
         self.break_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.break_btn.setText(_translate("Prorest", "Turn on"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("Prorest", "Break reminder"))
+        self.information_label_8.setText(_translate("Prorest", "What time do you plan to exercise today?"))
+        self.information_label_9.setText(_translate("Prorest", "Regular exercise is good for a healthy mind and body."))
+        self.exercise_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:8pt; font-weight:600;\">Turn on</span></p></body></html>"))
+        self.exercise_btn.setText(_translate("Prorest", "Set Exercise Reminder"))
+        self.exercise_format.setText(_translate("Prorest", "                  Format (HH:MM)"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_8), _translate("Prorest", "Exercise reminder"))
         self.music_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.music_btn.setText(_translate("Prorest", "Turn on"))
         self.Random_music_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Turn on</span></p></body></html>"))
@@ -302,9 +454,21 @@ class Ui_Prorest(QDialog):
         self.set_date_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:8pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.set_date_btn.setText(_translate("Prorest", "Set Date Reminder"))
         self.information_label_2.setText(_translate("Prorest", "     When you are done, click on the button in the bottom."))
-        self.time_format_label_2.setText(_translate("Prorest", "           Is it in a right Format ?"))
+        self.time_format_label_2.setText(_translate("Prorest", "             Is it in a right Format ?"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Prorest", "Important Dates"))
         self.resourse_label.setText(_translate("Prorest", d.read_references()))
+        self.sleep_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:8pt; font-weight:600;\">Turn on</span></p></body></html>"))
+        self.sleep_btn.setText(_translate("Prorest", "Set Sleep Reminder"))
+        self.information_label_3.setText(_translate("Prorest", "Sleep is an important part of our mental health"))
+        self.information_label_4.setText(_translate("Prorest", "It is usually recommended for adults to have about 6 to 8 hours of sleep"))
+        self.information_label_5.setText(_translate("Prorest", "We can help you go to bed on time based on when you want to wake up and how long you want to sleep"))
+        self.hours_6.setText(_translate("Prorest", "6 Hours"))
+        self.hours_7.setText(_translate("Prorest", "7 Hours"))
+        self.hours_8.setText(_translate("Prorest", "8 Hours"))
+        self.information_label_6.setText(_translate("Prorest", "What time do you want to wake up?"))
+        self.information_label_7.setText(_translate("Prorest", "How many hours do you want to sleep?"))
+        self.wake_up_time_format.setText(_translate("Prorest", "                  Format (HH:MM)"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), _translate("Prorest", "Sleep reminder"))
         self.quote_label_1.setText(_translate("Prorest", "  You can enter your funny quotes"))
         self.set_quote_btn.setToolTip(_translate("Prorest", "<html><head/><body><p><span style=\" font-size:8pt; font-weight:600;\">Turn on</span></p></body></html>"))
         self.set_quote_btn.setText(_translate("Prorest", "Set a Quote"))
@@ -327,6 +491,45 @@ class Ui_Prorest(QDialog):
             WorkerThread.running = False
             self.break_btn.setText("Turn on")
             self.breakChoice = 1
+
+    def set_sleep_reminder(self):
+        notify = RunningOp
+        #d.write_wake_up(self.wake_up_time.text)
+        if self.hours_6.isChecked or self.hours_7.isChecked or self.hours_8.isChecked:
+            if self.hours_6.isChecked():
+                sleep_hours = 6
+            if self.hours_7.isChecked():
+                sleep_hours = 7
+            if self.hours_8.isChecked():
+                sleep_hours = 8
+            try:
+                wake_up_input = self.wake_up_time.text()
+                wake_up_time2 = datetime.strptime(wake_up_input, '%H:%M')
+                #d.write_wake_up(wake_up_time2)
+                #wake_up_time3 = d.read_wake_up_time()
+                notify.sleep_set_notification("Sleep Reminder",wake_up_time2, "Icons/success.ico")
+                bed_time = notify.calculate_time_difference(wake_up_time2, sleep_hours)
+                sleep_reminder_time = notify.calculate_time_difference(bed_time, 1)
+                notify.sleep_set_notification("Sleep Reminder","Reminder set. We recommend sleeping at " + bed_time.strftime("%H:%M") + ".", "Icons/dream.ico")
+                schedule.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(notify.sleep_set_notification, "Sleep Reminder","It's 1 hour before bed. Get off the computer!", "Icons/dream.ico")
+                self.worker = WorkerThread(10)
+                self.worker.start()
+            except Exception:
+                notify.sleep_set_notification("Sleep Reminder","An error has occured. Please enter valid input", "Icons/error.ico")
+        else:
+            notify.sleep_set_notification("Sleep Reminder","An error has occured. Please enter valid input", "Icons/error.ico")
+
+    def set_exercise_time(self):
+        notify = RunningOp
+        try:
+                wake_up_input = self.exercise_time.text()
+                wake_up_time2 = datetime.strptime(wake_up_input, '%H:%M')
+                notify.sleep_set_notification("Exercise","Your exercise reminder has been set.","Icons/gym.ico")
+                schedule.every().day.at(wake_up_time2.strftime("%H:%M")).do(notify.sleep_set_notification, "Exercise","It's time to exercise. Get off your behind!","Icons/gym.ico")
+                self.worker = WorkerThread(10)
+                self.worker.start()
+        except Exception:
+                notify.sleep_set_notification("Exercise","An error has occured. Please enter valid input","Icons/error.ico")
 
     def play_music_press(self):
         """Check if the requirments are met and start or stop playing music in order"""
@@ -469,6 +672,7 @@ class WorkerThread(QThread):
     timeChosen = ""
     snack = True
     date = True
+    sleep_timer = True
     quote = True
     per_quote = True
     list_of_nrs = [300, 600, 1200, 1450, 1800, 3000, 3300]
@@ -536,6 +740,12 @@ class WorkerThread(QThread):
             while self.per_quote:
                 rand_time = random.choice(self.list_of_nrs)
                 RunningOp.viewQuoteNotification(d.read_per_quotes(), "Icons/3.ico", 30, rand_time)
+        
+        elif self.workerNum == 10:
+            while self.sleep_timer:
+                schedule.run_pending()
+                time.sleep(1)
+
 
 if __name__ == "__main__":
     import sys

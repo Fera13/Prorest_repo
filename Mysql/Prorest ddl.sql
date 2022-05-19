@@ -44,10 +44,17 @@ CREATE TABLE important_dates (
     msg VARCHAR(200)
 );
 
+CREATE TABLE wake_up_time (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    the_time VARCHAR(5)
+);
+
 INSERT INTO refs(sources, link) VALUES
 ("INTEGRIS Health. (2021, October 23). Foods That Give You Energy. Retrieved April 28, 2022, from https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy", "https://integrisok.com/resources/on-your-health/2021/september/healthy-foods-that-give-you-energy"),
 ("Cirillo, F., 2006. The pomodoro technique (the pomodoro). Agile Processes in Software Engineering and, 54(2), p.35.", "http://3.249.194.220/download/pomodoro-technique.pdf"),
-("Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower");
+("Harvard Health. (2021, March 6). Foods linked to better brainpower. Retrieved April 28, 2022, from https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower","https://www.health.harvard.edu/healthbeat/foods-linked-to-better-brainpower"),
+("Scott AJ, Webb TL, Rowse G. Does improving sleep lead to better mental health?. BMJ Open. 2017;7(9):e016873. doi:10.1136/bmjopen-2017-016873", "https://bmjopen.bmj.com/content/7/9/e016873%22"),
+("Treatment to fight depression (2021, Feb). Harvard Health publishing. Retrieved January 2022 from https://www.health.harvard.edu/mind-and-mood/exercise-is-an-all-natural-treatment-to-fight-depression", "https://www.health.harvard.edu/mind-and-mood/exercise-is-an-all-natural-treatment-to-fight-depression%22");
 
 INSERT INTO snacks(snack_name, benefits, source_id) VALUES
 ("Bananas", "They’re full of complex carbohydrates, vitamin B6, potassium and even a little protein.", 1),
@@ -99,3 +106,4 @@ INSERT INTO def_quotes(id, quote) VALUES
 (8, "If opportunity doesn’t knock, build a door."),
 (9, "Happiness is an attitude. We either make ourselves miserable, or happy and strong. The amount of work is the same."),
 (10, "It’s not whether you get knocked down, it’s whether you get up.");
+
