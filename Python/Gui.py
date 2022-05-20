@@ -494,7 +494,7 @@ class Ui_Prorest(QDialog):
 
     def set_sleep_reminder(self):
         notify = RunningOp
-        #d.write_wake_up(self.wake_up_time.text)
+        
         if self.hours_6.isChecked or self.hours_7.isChecked or self.hours_8.isChecked:
             if self.hours_6.isChecked():
                 sleep_hours = 6
@@ -504,12 +504,15 @@ class Ui_Prorest(QDialog):
                 sleep_hours = 8
             try:
                 wake_up_input = self.wake_up_time.text()
-                wake_up_time2 = datetime.strptime(wake_up_input, '%H:%M')
-                #d.write_wake_up(wake_up_time2)
-                #wake_up_time3 = d.read_wake_up_time()
-                notify.sleep_set_notification("Sleep Reminder",wake_up_time2, "Icons/success.ico")
+                wake_up_time2 = datetime.strptime(wake_up_input, '%H:%M') 
+
+                d.write_wake_up(wake_up_input)
+                wake_up_time3 = d.read_wake_up_time()
+                notify.sleep_set_notification("Sleep Reminder",wake_up_time3, "Icons/success.ico")
+
                 bed_time = notify.calculate_time_difference(wake_up_time2, sleep_hours)
                 sleep_reminder_time = notify.calculate_time_difference(bed_time, 1)
+
                 notify.sleep_set_notification("Sleep Reminder","Reminder set. We recommend sleeping at " + bed_time.strftime("%H:%M") + ".", "Icons/dream.ico")
                 schedule.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(notify.sleep_set_notification, "Sleep Reminder","It's 1 hour before bed. Get off the computer!", "Icons/dream.ico")
                 self.worker = WorkerThread(10)

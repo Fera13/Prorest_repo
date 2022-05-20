@@ -44,9 +44,9 @@ CREATE TABLE important_dates (
     msg VARCHAR(200)
 );
 
-CREATE TABLE wake_up_time (
+CREATE TABLE wake_time(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    the_time VARCHAR(5)
+    my_time text
 );
 
 INSERT INTO refs(sources, link) VALUES

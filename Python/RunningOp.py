@@ -64,7 +64,7 @@ def viewQuoteNotification(msg, ico, displayTime, sleep_time):
 
 
 
-def sleep_set_notification(message,title,icon):
+def sleep_set_notification(title,message,icon):
     notification.notify(
         title=title,
         message=message,
@@ -72,6 +72,7 @@ def sleep_set_notification(message,title,icon):
         app_icon=icon,
         timeout=10,
     )
+    time.sleep(10)
     
 def calculate_time_difference(old_time, hours):
         time_delta = timedelta(hours=hours)
