@@ -56,7 +56,7 @@ class Database:
         """Reading the time in the database"""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
-        sql = "SELECT my_time FROM wake_time LIMIT 1;"
+        sql = "SELECT the_time FROM wake_up_time LIMIT 1;"
         myCursor.execute(sql, )
         rows = myCursor.fetchall()
         for row in rows:
@@ -163,8 +163,8 @@ class Database:
         """Writing wake up time to the database"""
         myCon = mysql.connector.connect(**self.conInfo)
         myCursor = myCon.cursor(prepared=True)
-        myCursor.execute("INSERT INTO wake_time (my_time) VALUES (%s)", (time,))
-        myCursor.execute("DELETE FROM wake_time WHERE my_time != %s;", (time,))
+        myCursor.execute("INSERT INTO wake_up_time (the_time) VALUES (%s)", (time,))
+        myCursor.execute("DELETE FROM wake_up_time WHERE the_time != %s;", (time,))
         myCon.commit()
         myCursor.close()
         myCon.close()

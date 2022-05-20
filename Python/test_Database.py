@@ -1,3 +1,4 @@
+from doctest import OutputChecker
 from multiprocessing.context import assert_spawning
 import unittest
 from unittest import TestCase
@@ -163,6 +164,37 @@ class test_database(TestCase):
         self.assertIsNone(mock6.execute.assert_called())
         self.assertIsNone(mock6.commit.assert_called_once())
         self.assertIsNone(mock6.close.assert_called())
+        
+    def test_write_wake_up(self):
+        assert module_0.Database.conInfo == {'user': 'userPro', 'password': 'pass', 'host': '127.0.0.1', 
+                                             'port': '3306', 'database': 'Prorest', 'raise_on_warnings': True}
+        conInfo = {'user': 'userPro', 'password': 'pass', 'host': '127.0.0.1', 
+                                             'port': '3306', 'database': 'Prorest', 'raise_on_warnings': True}
+        time = "07:00"
+        mock7 = Mock()
+        d = module_0.Database()
+        d.write_wake_up(time)
+        mock7.connector.connect(**conInfo)
+        mock7.cursor()
+        mock7.execute()
+        mock7.commit()
+        mock7.close()
+        mock7.close()
+        
+        self.assertIsNone(mock7.connector.connect.assert_called_once())
+        self.assertIsNone(mock7.cursor.assert_called_once())
+        self.assertIsNone(mock7.execute.assert_called_once())
+        self.assertIsNone(mock7.commit.assert_called_once())
+        self.assertIsNone(mock7.close.assert_called())
+        
+        
+       
+       
+    def test_read_wake_up(self):
+        d = module_0.Database()
+        self.assertTrue(d.read_wake_up_time(), [""])
+            
+        
 
     
 if __name__ == '__main__':
