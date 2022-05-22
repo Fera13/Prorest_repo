@@ -1,8 +1,6 @@
-from socket import timeout
 import time
 import datetime
 from datetime import timedelta
-from charset_normalizer import detect
 import pafy
 import vlc
 from plyer import notification
