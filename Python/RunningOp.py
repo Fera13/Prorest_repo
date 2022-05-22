@@ -30,7 +30,7 @@ def play_music(link):
     media.get_mrl()
     player.set_media(media)
     player.play()
-    time.sleep(length)
+    time.sleep(60)
     player.stop()
     
 def viewNotification(starter, msg, ico, displayTime, sleepTime):
