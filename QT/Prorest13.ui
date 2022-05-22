@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Prorest</class>
+ <widget class="QMainWindow" name="Prorest">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1153</width>
+    <height>725</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Prorest</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(151, 45, 219, 252), stop:1 rgba(72, 151, 183, 252));
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 134, 213, 227), stop:0.994737 rgba(194, 255, 135, 252));</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>1131</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 9pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(62, 225, 242, 241), stop:0.994737 rgba(255, 237, 0, 209));
+
+</string>
+    </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Triangular</enum>
+    </property>
+    <property name="currentIndex">
+     <number>4</number>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>16</width>
+      <height>16</height>
+     </size>
+    </property>
+    <property name="elideMode">
+     <enum>Qt::ElideNone</enum>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Break reminder</string>
+     </attribute>
+     <widget class="QLabel" name="break_bg">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>0</y>
+        <width>1151</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/ThinkstockPhotos-489763838-e1490767826261.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="break_btn">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>130</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(151, 241, 51, 241), stop:0.994737 rgba(255, 188, 57, 224));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Turn on</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_8">
+     <attribute name="title">
+      <string>Exercise reminder</string>
+     </attribute>
+     <widget class="QLabel" name="exercise_bg">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1161</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/yoga.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_8">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>771</width>
+        <height>45</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 22pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>What time do you plan to exercise today?</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>483</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 11pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Regular exercise is good for a healthy mind and body.</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="exercise_btn">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>250</y>
+        <width>361</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Berlin Sans FB Demi</family>
+        <pointsize>14</pointsize>
+        <weight>9</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Set Exercise Reminder</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="exercise_time">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>150</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 193, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="exercise_format">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>200</y>
+        <width>271</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+background-color: rgb(200, 151, 182);</string>
+      </property>
+      <property name="text">
+       <string>                  Format (HH:MM)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Relaxing songs</string>
+     </attribute>
+     <widget class="QLabel" name="music_bg">
+      <property name="geometry">
+       <rect>
+        <x>-230</x>
+        <y>-80</y>
+        <width>1361</width>
+        <height>761</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/maxresdefault2.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="music_btn">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>150</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(219, 200, 45, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Turn on</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Random_music_btn">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>280</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(219, 200, 45, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Randomize on</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Automated_music_btn">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>400</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(219, 200, 45, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Set music timer</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>60</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 213, 63, 227), stop:0.994737 rgba(194, 255, 135, 252));</string>
+      </property>
+      <property name="text">
+       <string> Note! When you turn the music off,</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>90</y>
+        <width>311</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 213, 63, 227), stop:0.994737 rgba(194, 255, 135, 252));</string>
+      </property>
+      <property name="text">
+       <string>   the current song will need to finish fully.</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="write_time_bar">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>480</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="time_format_label">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>530</y>
+        <width>261</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 213, 63, 227), stop:0.994737 rgba(194, 255, 135, 252));</string>
+      </property>
+      <property name="text">
+       <string>                  Format (HH:MM)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Snack/Drink reminder</string>
+     </attribute>
+     <widget class="QLabel" name="snacks_bg">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-30</y>
+        <width>1131</width>
+        <height>751</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/bread-toasted_WDGG60RQAJ.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="snacks_btn">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>40</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qconicalgradient(cx:0.5, cy:0.5, angle:224.494, stop:0 rgba(255, 157, 41, 246), stop:0.994737 rgba(255, 180, 36, 224));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Turn on</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="snacks_tips">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>140</y>
+        <width>331</width>
+        <height>491</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 12pt &quot;Berlin Sans FB Demi&quot;;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 210, 56, 218), stop:0.994737 rgba(255, 180, 36, 224));</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Important Dates</string>
+     </attribute>
+     <widget class="QLabel" name="important_bg">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>-10</y>
+        <width>1151</width>
+        <height>751</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/woman-writing_FFSUL8TZD3.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="date_label">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>100</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string> Date (Format: YYYY-MM-DD)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>471</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>  Add the information with the correct format in the boxes below</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="time_label">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>190</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>      Time (Format: HH:MM)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="title_label">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>280</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>                      Title</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="msg_label">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>370</y>
+        <width>211</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>                   Message</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="write_date">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>130</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="write_time">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>220</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="write_title">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>310</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="write_message">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>400</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="set_date_btn">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>500</y>
+        <width>211</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Berlin Sans FB Demi</family>
+        <pointsize>14</pointsize>
+        <weight>9</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Set Date Reminder</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_2">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>50</y>
+        <width>431</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>     When you are done, click on the button in the bottom.</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="time_format_label_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>450</y>
+        <width>261</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(78, 213, 63, 227), stop:0.994737 rgba(194, 255, 135, 252));</string>
+      </property>
+      <property name="text">
+       <string>             Is it in a right Format ?</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>Sleep reminder</string>
+     </attribute>
+     <widget class="QLabel" name="sleep_bg">
+      <property name="geometry">
+       <rect>
+        <x>-660</x>
+        <y>-10</y>
+        <width>1801</width>
+        <height>751</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/sleep.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="sleep_btn">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>480</y>
+        <width>361</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Berlin Sans FB Demi</family>
+        <pointsize>14</pointsize>
+        <weight>9</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Set Sleep Reminder</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_3">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>20</y>
+        <width>351</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Sleep is an important part of our mental health</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_4">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>40</y>
+        <width>511</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>It is usually recommended for adults to have about 6 to 8 hours of sleep</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_5">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>60</y>
+        <width>761</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>We can help you go to bed on time based on when you want to wake up and how long you want to sleep</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="hours_6">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>150</y>
+        <width>231</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));
+background-color: rgb(255, 193, 255);</string>
+      </property>
+      <property name="text">
+       <string>6 Hours</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="hours_7">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>200</y>
+        <width>231</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));
+background-color: rgb(255, 193, 255);</string>
+      </property>
+      <property name="text">
+       <string>7 Hours</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="hours_8">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>250</y>
+        <width>231</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(111, 39, 186, 241), stop:0.994737 rgba(170, 20, 119, 209));
+background-color: rgb(255, 193, 255);</string>
+      </property>
+      <property name="text">
+       <string>8 Hours</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="wake_up_time">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>370</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 193, 255);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_6">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>330</y>
+        <width>422</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>What time do you want to wake up?</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="information_label_7">
+      <property name="geometry">
+       <rect>
+        <x>630</x>
+        <y>110</y>
+        <width>458</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(81, 28, 141, 255), stop:1 rgba(255, 111, 111, 255));
+font: 75 14pt &quot;MS Shell Dlg 2&quot;;
+font-weight: bold;
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>How many hours do you want to sleep?</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="wake_up_time_format">
+      <property name="geometry">
+       <rect>
+        <x>770</x>
+        <y>430</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(0, 0, 0, 227), stop:0.994737 rgba(0, 0, 0, 252));
+font: 75 9.7pt &quot;Berlin Sans FB Demi&quot;;
+font-weight: bold;
+background-color: rgb(200, 151, 182);</string>
+      </property>
+      <property name="text">
+       <string>                  Format (HH:MM)</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_6">
+     <attribute name="title">
+      <string>Fun Messages</string>
+     </attribute>
+     <widget class="QLabel" name="quote_label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1161</width>
+        <height>751</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/funny.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="quote_label_1">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>390</y>
+        <width>271</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 10pt &quot;Berlin Sans FB Demi&quot;;
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>  You can enter your funny quotes</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="set_quote_btn">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>540</y>
+        <width>351</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Berlin Sans FB Demi</family>
+        <pointsize>14</pointsize>
+        <weight>9</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Set a Quote</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="quote_btn">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>470</y>
+        <width>291</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Free Quotes : on</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="write_quote">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>470</y>
+        <width>351</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="quote_btn_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>550</y>
+        <width>291</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;Turn on&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(45, 219, 182, 252), stop:1 rgba(209, 255, 137, 252));
+font: 75 14pt &quot;Berlin Sans FB Demi&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Your own Quotes : on</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>Resources</string>
+     </attribute>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>-40</x>
+        <y>-10</y>
+        <width>1171</width>
+        <height>751</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Python/BG/books-library_6XANS2384I.jpg</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="resourse_label">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>130</y>
+        <width>1031</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Imprint MT Shadow&quot;;
+color: rgb(0, 0, 0);
+background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.88565, fy:0.817449, stop:0 rgba(255, 199, 41, 246), stop:0.994737 rgba(255, 180, 36, 224));
+</string>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
