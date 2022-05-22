@@ -56,6 +56,7 @@ class Ui_Prorest(QDialog):
         self.tabWidget.setTabShape(QtWidgets.QTabWidget.Triangular)
         self.tabWidget.setIconSize(QtCore.QSize(16, 16))
         self.tabWidget.setElideMode(QtCore.Qt.ElideNone)
+        self.tabWidget.setMovable(True)
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
