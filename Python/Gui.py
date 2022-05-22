@@ -510,7 +510,6 @@ class Ui_Prorest(QDialog):
 
                 d.write_wake_up(wake_up_input)
                 wake_up_time3 = d.read_wake_up_time()
-                notify.viewNotification("Sleep Reminder",wake_up_time3, "Icons/success.ico",10,5)
 
                 bed_time = notify.calculate_time_difference(wake_up_time2, sleep_hours)
                 sleep_reminder_time = notify.calculate_time_difference(bed_time, 1)
