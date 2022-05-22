@@ -61,23 +61,12 @@ def viewQuoteNotification(msg, ico, displayTime, sleep_time):
                         app_icon = ico,
                         timeout = displayTime)
     time.sleep(sleep_time)
-
-
-
-def sleep_set_notification(title,message,icon):
-    notification.notify(
-        title=title,
-        message=message,
-        app_name = "Prorest",
-        app_icon=icon,
-        timeout=10,
-    )
-    time.sleep(10)
     
 def calculate_time_difference(old_time, hours):
-        time_delta = timedelta(hours=hours)
-        new_time = old_time - time_delta
-        return new_time
+    """Function to calculate the time difference for sleep hours and wake up time"""
+    time_delta = timedelta(hours=hours)
+    new_time = old_time - time_delta
+    return new_time
 
 def check_date_format(input):
     """Checks if the date entered is the right format with the right values. Returns boolean"""

@@ -505,34 +505,37 @@ class Ui_Prorest(QDialog):
             try:
                 wake_up_input = self.wake_up_time.text()
                 wake_up_time2 = datetime.strptime(wake_up_input, '%H:%M') 
+                self.sleep_btn.setText("Set New Sleep Time")
 
                 d.write_wake_up(wake_up_input)
                 wake_up_time3 = d.read_wake_up_time()
-                notify.sleep_set_notification("Sleep Reminder",wake_up_time3, "Icons/success.ico")
+                notify.viewNotification("Sleep Reminder",wake_up_time3, "Icons/success.ico",10,5)
 
                 bed_time = notify.calculate_time_difference(wake_up_time2, sleep_hours)
                 sleep_reminder_time = notify.calculate_time_difference(bed_time, 1)
 
-                notify.sleep_set_notification("Sleep Reminder","Reminder set. We recommend sleeping at " + bed_time.strftime("%H:%M") + ".", "Icons/dream.ico")
-                schedule.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(notify.sleep_set_notification, "Sleep Reminder","It's 1 hour before bed. Get off the computer!", "Icons/dream.ico")
+                notify.viewNotification("Sleep Reminder","Reminder set. We recommend sleeping at " + bed_time.strftime("%H:%M") + ".", "Icons/dream.ico",10,5)
+                schedule.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(notify.viewNotification, "Sleep Reminder","It's 1 hour before bed. Get off the computer!", "Icons/dream.ico",10,5)
                 self.worker = WorkerThread(10)
                 self.worker.start()
             except Exception:
-                notify.sleep_set_notification("Sleep Reminder","An error has occured. Please enter valid input", "Icons/error.ico")
+                notify.viewNotification("Sleep Reminder","An error has occured. Please enter valid input", "Icons/error.ico",10,5)
+        
         else:
-            notify.sleep_set_notification("Sleep Reminder","An error has occured. Please enter valid input", "Icons/error.ico")
-
+            notify.viewNotification("Sleep Reminder","An error has occured. Please enter valid input", "Icons/error.ico",10,5)
+        
     def set_exercise_time(self):
         notify = RunningOp
         try:
                 wake_up_input = self.exercise_time.text()
                 wake_up_time2 = datetime.strptime(wake_up_input, '%H:%M')
-                notify.sleep_set_notification("Exercise","Your exercise reminder has been set.","Icons/gym.ico")
-                schedule.every().day.at(wake_up_time2.strftime("%H:%M")).do(notify.sleep_set_notification, "Exercise","It's time to exercise. Get off your behind!","Icons/gym.ico")
+                notify.viewNotification("Exercise","Your exercise reminder has been set.","Icons/gym.ico",10,5)
+                schedule.every().day.at(wake_up_time2.strftime("%H:%M")).do(notify.viewNotification, "Exercise","It's time to exercise. Get off your behind!","Icons/gym.ico",10,5)
                 self.worker = WorkerThread(10)
                 self.worker.start()
         except Exception:
-                notify.sleep_set_notification("Exercise","An error has occured. Please enter valid input","Icons/error.ico")
+                notify.viewNotification("Exercise","An error has occured. Please enter valid input","Icons/error.ico",10,5)
+        
 
     def play_music_press(self):
         """Check if the requirments are met and start or stop playing music in order"""
