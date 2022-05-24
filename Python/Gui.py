@@ -34,7 +34,9 @@ class Ui_Prorest(QDialog):
     important_dates = 1
     quote = 1
     per_quote = 1
-    
+    sleep_count = 0
+    exercise_count = 0
+
     def setupUi(self, Prorest):
         """The skeleton of the program"""
         Prorest.setObjectName("Prorest")
@@ -494,7 +496,9 @@ class Ui_Prorest(QDialog):
     def set_sleep_reminder(self):
         """Set a time for sleeping to Database and send notifications"""
         notify = RunningOp
-        
+        if self.sleep_count == 1:
+            schedule.clear('sleep')
+            self.sleep_count -= 1
         if self.hours_6.isChecked or self.hours_7.isChecked or self.hours_8.isChecked:
             if self.hours_6.isChecked():
                 sleep_hours = 6
@@ -514,7 +518,8 @@ class Ui_Prorest(QDialog):
                 sleep_reminder_time = notify.calculate_time_difference(bed_time, 1)
 
                 notify.viewNotification("Sleep Reminder","Reminder set. We recommend sleeping at " + bed_time.strftime("%H:%M") + ".", "Icons/dream.ico",10,5)
-                schedule.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(notify.viewNotification, "Sleep Reminder","It's 1 hour before bed. Get off the computer!", "Icons/dream.ico",10,5)
+                schedule.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(notify.viewNotification, "Sleep Reminder","It's 1 hour before bed. Get off the computer!", "Icons/dream.ico",10,5).tag('sleep')
+                self.sleep_count += 1
                 self.worker = WorkerThread(10)
                 self.worker.start()
             except Exception:
@@ -523,15 +528,21 @@ class Ui_Prorest(QDialog):
         else:
             notify.viewNotification("Sleep Reminder","An error has occured. Please enter valid input", "Icons/error.ico",10,5)
         
+
+
     def set_exercise_time(self):
         """Set a time for daily exercise """
         notify = RunningOp
+        if self.exercise_count == 1:
+                    self.exercise_count -= 1
+                    schedule.clear('exercise')
         try:
                 wake_up_input = self.exercise_time.text()
                 wake_up_time2 = datetime.strptime(wake_up_input, '%H:%M')
                 notify.viewNotification("Exercise","Your exercise reminder has been set.","Icons/gym.ico",10,5)
-                schedule.every().day.at(wake_up_time2.strftime("%H:%M")).do(notify.viewNotification, "Exercise","It's time to exercise. Get off your behind!","Icons/gym.ico",10,5)
-                self.worker = WorkerThread(10)
+                schedule.every().day.at(wake_up_time2.strftime("%H:%M")).do(notify.viewNotification, "Exercise","It's time to exercise. Get off your behind!","Icons/gym.ico",10,5).tag('exercise')
+                self.exercise_count += 1
+                self.worker = WorkerThread(11)
                 self.worker.start()
         except Exception:
                 notify.viewNotification("Exercise","An error has occured. Please enter valid input","Icons/error.ico",10,5)
@@ -668,6 +679,7 @@ class Ui_Prorest(QDialog):
             self.quote_btn_2.setText("Your own Quotes : on")
             self.per_quote = 1
 
+
 class WorkerThread(QThread):
     running = True
     music = True
@@ -748,9 +760,20 @@ class WorkerThread(QThread):
                 RunningOp.viewQuoteNotification(d.read_per_quotes(), "Icons/3.ico", 30, rand_time)
         
         elif self.workerNum == 10:
-            while self.sleep_timer:
+            while True:
                 schedule.run_pending()
+                if not schedule.jobs:
+                    break
                 time.sleep(1)
+            schedule.clear('sleep')
+
+        elif self.workerNum == 11:
+            while True:
+                schedule.run_pending()
+                if not schedule.jobs:
+                    break
+                time.sleep(1)
+            schedule.clear('exercise')
 
 
 if __name__ == "__main__":
