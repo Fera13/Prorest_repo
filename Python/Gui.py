@@ -19,6 +19,9 @@ import schedule
 import RunningOp
 from Database import Database
 
+schedule1 = schedule.Scheduler()
+schedule2 = schedule.Scheduler()
+schedule3 = schedule.Scheduler()
 
 d = Database()
 
@@ -37,6 +40,7 @@ class Ui_Prorest(QDialog):
     per_quote = 1
     sleep_count = 0
     exercise_count = 0
+    songs_count = 0
 
     def setupUi(self, Prorest):
         """Has the skeleton of the program."""
@@ -713,7 +717,7 @@ class Ui_Prorest(QDialog):
         """Set a time for sleeping to Database and send notifications"""
         notify = RunningOp
         if self.sleep_count == 1:
-            schedule.clear("sleep")
+            schedule2.clear()
             self.sleep_count -= 1
         if self.hours_6.isChecked or self.hours_7.isChecked or self.hours_8.isChecked:
             if self.hours_6.isChecked():
@@ -741,7 +745,7 @@ class Ui_Prorest(QDialog):
                     10,
                     5,
                 )
-                schedule.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(
+                schedule2.every().day.at(sleep_reminder_time.strftime("%H:%M")).do(
                     notify.viewNotification,
                     "Sleep Reminder",
                     "It's 1 hour before bed. Get off the computer!",
@@ -775,7 +779,7 @@ class Ui_Prorest(QDialog):
         notify = RunningOp
         if self.exercise_count == 1:
             self.exercise_count -= 1
-            schedule.clear("exercise")
+            schedule3.clear()
         try:
             wake_up_input = self.exercise_time.text()
             wake_up_time2 = datetime.strptime(wake_up_input, "%H:%M")
@@ -786,7 +790,7 @@ class Ui_Prorest(QDialog):
                 10,
                 5,
             )
-            schedule.every().day.at(wake_up_time2.strftime("%H:%M")).do(
+            schedule3.every().day.at(wake_up_time2.strftime("%H:%M")).do(
                 notify.viewNotification,
                 "Exercise",
                 "It's time to exercise. Get off your behind!",
@@ -840,18 +844,19 @@ class Ui_Prorest(QDialog):
                 self.Automated_music_btn.setText("Stop timer/ music")
                 self.time_format_label.setText("           Time has been set")
                 self.musicTimer = 2
-                WorkerThread.sTimer = True
-                WorkerThread.keepGoing = True
-                WorkerThread.timeChosen = timeSelected
+                
+                schedule1.every().day.at(timeSelected).do(self.timer_song_play)
+                self.songs_count += 1
                 self.worker = WorkerThread(4)
                 self.worker.start()
             else:
+                if self.songs_count == 1:
+                    self.songs_count -= 1
+                    schedule1.clear()
                 self.Automated_music_btn.setText("Set music timer")
                 self.time_format_label.setText("              Format (HH:MM)")
                 self.write_time_bar.setText("")
                 self.musicTimer = 1
-                WorkerThread.sTimer = False
-                WorkerThread.keepGoing = False
                 WorkerThread.songTimer = False
         else:
             self.time_format_label.setText("Please use the right format (HH:MM)")
@@ -947,13 +952,12 @@ class WorkerThread(QThread):
     randMusic = True
     songTimer = True
     keepGoing = True
-    sTimer = True
-    timeChosen = ""
     snack = True
     date = True
     sleep_timer = True
     quote = True
     per_quote = True
+    
     list_of_nrs = [300, 600, 1200, 1450, 1800, 3000, 3300]
 
     def __init__(self, workerNum):
@@ -990,12 +994,11 @@ class WorkerThread(QThread):
                     songs.pop(randsong)
 
         elif self.workerNum == 4:
-            while self.sTimer:
-                u = Ui_Prorest()
-                schedule.every().day.at(self.timeChosen).do(u.timer_song_play)
-                while self.keepGoing:
-                    schedule.run_pending()
-                    time.sleep(1)
+            while True:
+                schedule1.run_pending()
+                if not schedule1.jobs:
+                    break
+                time.sleep(1)
 
         elif self.workerNum == 5:
             d = Database()
@@ -1040,19 +1043,17 @@ class WorkerThread(QThread):
 
         elif self.workerNum == 10:
             while True:
-                schedule.run_pending()
-                if not schedule.jobs:
+                schedule2.run_pending()
+                if not schedule2.jobs:
                     break
                 time.sleep(1)
-            schedule.clear("sleep")
 
         elif self.workerNum == 11:
             while True:
-                schedule.run_pending()
-                if not schedule.jobs:
+                schedule3.run_pending()
+                if not schedule3.jobs:
                     break
                 time.sleep(1)
-            schedule.clear("exercise")
 
 
 if __name__ == "__main__":
